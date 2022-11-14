@@ -1,0 +1,33 @@
+<row id='start' width= 450 height= 170 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_ROW'>
+    <col width= 300 height= 170 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_ROW' style='asset: "Background";'>
+        <col width= 130 height= 170 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_COLUMN_REVERSE'>
+            <row width= 130 height= 36 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_ROW'>
+                <Button id="profile" margins= 3 width= 26 height= 26 style='asset: "Profile";'></Button>
+                <row width= 60 height= 10 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_COLUMN_REVERSE'>
+                    <Text width= 5 height= 5 options='{textHeight: 0.04, textAnchor: "middle-center"}'>4140/6900</Text>
+                    <Slider margins= 5 id="exp_slider" width= 60 height= 4 style='asset: "Slider";' options='{disabled: true, animate: false, mask: {asset: "Slider Mask", underlay: "Slider Red"}}'></Slider>
+                </row>
+                <Button margins= 5 width= 10 height= 10 style='asset: "Icon";'></Button>
+            </row>
+            <row marginBottom= 10 width= 130 height= 114 justifyContent='JUSTIFY_FLEX_START' alignItems='ALIGN_FLEX_END' flexDirection='FLEX_DIRECTION_ROW'>
+                <Grid id='categories_grid' width= 130 height= 96 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_FLEX_CENTER' flexDirection='FLEX_DIRECTION_COLUMN_REVERSE' options='{row:6, col:1, width:77, height:16, margins: 2, template_url: "category_cell.xml"}'></Grid>
+            </row>
+        </col>
+        <col width= 170 height= 170 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_COLUMN_REVERSE'>
+            <row width= 150 height= 100 justifyContent='JUSTIFY_FLEX_CENTER' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_ROW'>
+                <Grid id='weapons_grid' width= 150 height= 100 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_FLEX_CENTER' flexDirection='FLEX_DIRECTION_COLUMN_REVERSE' options='{row:2, col:2, width:70, height:50, margins: 2, template_url: "weapon_cell.xml"}'></Grid>
+            </row>
+            <row marginTop= -10 width= 150 height= 30 justifyContent='JUSTIFY_FLEX_CENTER' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_ROW'>
+                <Pager id='weapons_pager' width= 150 height= 12 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_CENTER' options='{width: 10, height: 10, defaultAsset: "Next Page", highlightAsset: "Page Active"}'>
+                    <div id='dots' width= 140 height= 12 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_ROW'></div>
+                </Pager>
+            </row>
+            <row marginTop= -10 width= 153 height= 30 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_ROW'>
+                <Button id='editor_btn' margins= 5 width= 40 height= 13 options='{textHeight: 0.05, textAnchor: "middle-center"}' style='asset: "Action";'>Editor</Button>
+                <Button id='attachment_btn' margins= 5 width= 40 height= 13 options='{textHeight: 0.05, textAnchor: "middle-center"}' style='asset: "Action";'>Costumize</Button>
+                <Button id='start_btn' margins= 5 width= 40 height= 13 options='{textHeight: 0.05, textAnchor: "middle-center"}' style='asset: "Action";'>Start</Button>
+            </row>
+        </col>
+    </col>
+    <col id='side' width= 120 height= 170 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_COLUMN_REVERSE'></col>
+</row>

@@ -1,0 +1,4 @@
+<root justifyContent='JUSTIFY_CENTER' flexDirection='FLEX_DIRECTION_COLUMN_REVERSE' alignItems='ALIGN_CENTER' options='{alignment: "middle-left"}'>
+    <row id='main'>
+    </row>
+</root>

@@ -1,0 +1,13 @@
+<row id='editor' width= 120 height= 170 justifyContent='JUSTIFY_FLEX_START' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_COLUMN_REVERSE' style='asset: "Background"'>
+    <row width= 120 height= 80 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_COLUMN_REVERSE'>
+        <row width= 120 height= 20 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_ROW'>
+            <col width= 60 height= 20 justifyContent='JUSTIFY_FLEX_START' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_ROW'>
+                <Text width= 20 height= 20 options='{textHeight: 0.05, textAnchor: "middle-left"}'>Targets</Text>
+            </col>
+            <col width= 60 height= 20 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_ROW'>
+                <Button width= 60 height= 20 options='{textHeight: 0.05, textAnchor: "middle-center"}'>Spawn</Button>
+            </col>
+        </row>
+        <Grid id='enemy_grid' width= 80 height= 60 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_FLEX_CENTER' flexDirection='FLEX_DIRECTION_COLUMN_REVERSE' options='{row:2, col:2, width:32, height:32, margins: 2, template_url: "enemy_cell.xml"}'></Grid>
+    </row>
+</row>

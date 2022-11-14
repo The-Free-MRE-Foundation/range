@@ -1,0 +1,191 @@
+[
+    {
+        "name": "Action",
+        "resourceId": "artifact:2123943343988670884",
+		"dimensions": {
+			"width": 15.82,
+			"height": 5.16,
+			"depth": 0.004032
+		}
+    },
+    {
+        "name": "Attachment Cell",
+        "resourceId": "artifact:2133735698782487549",
+		"dimensions": {
+			"width": 14.94,
+			"height": 9.28,
+			"depth": 0.004032
+		}
+    },
+    {
+        "name": "Background",
+        "resourceId": "artifact:2123943343200141727",
+		"dimensions": {
+			"width": 86.69,
+			"height": 43.17,
+			"depth": 0.004032
+		}
+    },
+    {
+        "name": "Category",
+        "resourceId": "artifact:2123943343728624035",
+		"dimensions": {
+			"width": 25.43,
+			"height": 6.67,
+			"depth": 0.004032
+		}
+    },
+    {
+        "name": "Enemy Cell",
+        "resourceId": "artifact:2123943343334359456",
+		"dimensions": {
+			"width": 7.56,
+			"height": 7.56,
+			"depth": 0.004032
+		}
+    },
+    {
+        "name": "Ghost",
+        "resourceId": "artifact:2123969640756412602",
+		"dimensions": {
+			"width": 7.56,
+			"height": 7.56,
+			"depth": 0.004032
+		}
+    },
+    {
+        "name": "Icon",
+        "resourceId": "artifact:2132071569353081855",
+		"dimensions": {
+			"width": 2.45,
+			"height": 2.10,
+			"depth": 0.004032
+		}
+    },
+    {
+        "name": "Page Active",
+        "resourceId": "artifact:2134244448085737490",
+		"dimensions": {
+			"width": 0.74,
+			"height": 0.74,
+			"depth": 0.004032
+		}
+    },
+    {
+        "name": "Next Page",
+        "resourceId": "artifact:2134244447817302033",
+		"dimensions": {
+			"width": 0.74,
+			"height": 0.74,
+			"depth": 0.004032
+		}
+    },
+    {
+        "name": "Profile",
+        "resourceId": "artifact:2123943344248717734",
+		"dimensions": {
+			"width": 5.19,
+			"height": 5.19,
+			"depth": 0.004032
+		}
+    },
+    {
+        "name": "Slider",
+        "resourceId": "artifact:2123943343468577185",
+		"dimensions": {
+			"width": 8.25,
+			"height": 0.53,
+			"depth": 0.004032
+		}
+    },
+    {
+        "name": "Slider Mask",
+        "resourceId": "artifact:2123943344122888613",
+		"dimensions": {
+			"width": 2.56,
+			"height": 0.512,
+			"depth": 0.004032
+		}
+    },
+    {
+        "name": "Slider Red",
+        "resourceId": "artifact:2123943343074312606",
+		"dimensions": {
+			"width": 8.25,
+			"height": 0.53,
+			"depth": 0.004032
+		}
+    },
+    {
+        "name": "Weapon Cell",
+        "resourceId": "artifact:2123943343594406306",
+		"dimensions": {
+			"width": 15.40,
+			"height": 11.12,
+			"depth": 0.004032
+		}
+    },
+    {
+        "name": "Blaster",
+        "resourceId": "artifact:2123943344382935463",
+		"dimensions": {
+			"width": 5.12,
+			"height": 5.12,
+			"depth": 0.004032
+		}
+    },
+    {
+        "name": "M9",
+        "resourceId": "artifact:2133540357579735462",
+		"dimensions": {
+			"width": 5.12,
+			"height": 5.12,
+			"depth": 0.004032
+		}
+    },
+    {
+        "name": "M16",
+        "resourceId": "artifact:2133593468423897278",
+		"dimensions": {
+			"width": 5.12,
+			"height": 5.12,
+			"depth": 0.004032
+		}
+    },
+    {
+        "name": "MK18",
+        "resourceId": "artifact:2134213674829611227",
+		"dimensions": {
+			"width": 5.12,
+			"height": 5.12,
+			"depth": 0.004032
+		}
+    },
+    {
+        "name": "590A1",
+        "resourceId": "artifact:2133860262774571337",
+		"dimensions": {
+			"width": 4.9,
+			"height": 4.9,
+			"depth": 0.004032
+		}
+    },
+    {
+        "name": "MP5",
+        "resourceId": "artifact:2134236190851727599",
+		"dimensions": {
+			"width": 4.9,
+			"height": 4.9,
+			"depth": 0.004032
+		}
+    },
+    {
+        "name": "Hunter",
+        "resourceId": "artifact:2134236190465851629",
+		"dimensions": {
+			"width": 4.9,
+			"height": 4.9,
+			"depth": 0.004032
+		}
+    }
+]

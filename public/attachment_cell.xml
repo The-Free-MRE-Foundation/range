@@ -1,0 +1,3 @@
+<row class="container" width=35 height=13 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_COLUMN_REVERSE' style='asset: "Attachment Cell"'>
+	<Button id=${cell.id} width=35 height=13 options='{textHeight: 0.05, textAnchor: "middle-center"}'>${cell.name}</Button>
+</row>
