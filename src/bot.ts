@@ -1,6 +1,6 @@
-import { Actor, ActorPath, Animation, AnimationData, AnimationDataLike, AnimationEaseCurves, AnimationWrapMode, AssetContainer, ButtonBehavior, ButtonEventData, ColliderType, CollisionLayer, Context, DegreesToRadians, Guid, Material, Quaternion, ScaledTransformLike, User, Vector3 } from "@microsoft/mixed-reality-extension-sdk";
+import { Actor, ActorPath, Animation, AnimationData, AnimationDataLike, AnimationEaseCurves, AnimationWrapMode, AssetContainer, Context, DegreesToRadians, Quaternion, ScaledTransformLike } from "@microsoft/mixed-reality-extension-sdk";
 import { HitBox, HitBoxOptions, HitBoxShape } from "./hitbox";
-import { translate } from "./utils";
+import { Async, translate } from "./utils";
 import { WayPoint, WayPointGraph } from "./waypoint";
 
 interface BotAnimation {
@@ -214,14 +214,14 @@ export interface BotOptions {
     hitboxes: HitBoxOptions[],
 }
 
-export class Bot {
+export class Bot extends Async {
     private anchor: Actor;
     private model: Actor;
     private hitboxes: HitBox[];
 
     // logic
     private isDead: boolean = false;
-    get dead(){
+    get dead() {
         return this.isDead;
     }
 
@@ -251,8 +251,10 @@ export class Bot {
     // callbacks
     public onDeath: () => void;
     public onMiss: () => void;
+    public onTarget: () => void;
 
     constructor(private context: Context, private assets: AssetContainer, private options: BotOptions) {
+        super();
         this.init();
     }
 
@@ -268,6 +270,8 @@ export class Bot {
         if (this.ttl !== undefined && this.ttl > 0) {
             this.startTimer();
         }
+
+        this.notifyCreated(true);
     }
 
     private createAnchor() {
@@ -327,20 +331,17 @@ export class Bot {
     private async death() {
         if (this.isDead || this.isMissed) { return; }
         this.isDead = true;
-        this.hitboxes.forEach(h=>h.remove());
+        this.hitboxes.forEach(h => h.remove());
         await this.animate('death');
         if (this.onDeath) this.onDeath();
 
         this.remove();
-        if (this.timeout) {
-            clearTimeout(this.timeout);
-        }
     }
 
     private async miss() {
         if (this.isDead || this.isMissed) { return; }
         this.isMissed = true;
-        this.hitboxes.forEach(h=>h.remove());
+        this.hitboxes.forEach(h => h.remove());
         await this.animate('missed');
         if (this.onMiss) this.onMiss();
 
@@ -365,11 +366,41 @@ export class Bot {
         }
     }
 
-    public async moveTo(wayPoint: WayPoint, dist?: number) {
+    public async chase(target: Actor, wayPointGraph: WayPointGraph) {
+        while (true) {
+            if (this.isDead) { return; }
+            // find nearest waypoint to the target
+            const targetWayPoint = wayPointGraph.nearestWayPoint(target);
+            const targetWayPointID = wayPointGraph.wayPointIds.get(targetWayPoint);
+            // find next hop to the nearest waypoint
+            const currentWayPoint = this.waypoint;
+            const currentWayPointID = wayPointGraph.wayPointIds.get(currentWayPoint);
+            if (targetWayPointID == currentWayPointID) {
+                this.remove();
+                this.onTarget();
+                return;
+            }
+
+            const nextWayPointID = wayPointGraph.nextHop[currentWayPointID][targetWayPointID];
+            if (!nextWayPointID) {
+                return;
+            }
+            const nextWayPoint = wayPointGraph.nodes.get(nextWayPointID).wayPoint;
+
+            const a = currentWayPoint.anchor.transform.app.position.clone();
+            const b = nextWayPoint.anchor.transform.app.position.clone();
+
+            this.waypoint = nextWayPoint;
+            await this.moveTo(nextWayPoint, a.subtract(b).length());
+        }
+    }
+
+    public async moveTo(wayPoint?: WayPoint | Actor, dist?: number) {
+        const target = wayPoint instanceof WayPoint ? wayPoint.anchor :  wayPoint;
         await Animation.AnimateTo(this.context, this.anchor, {
             destination: {
                 transform: {
-                    local: wayPoint.anchor.transform.app.toJSON(),
+                    local: target.transform.app.toJSON(),
                 }
             },
             duration: dist ? dist / 1.5 : 1,
@@ -379,5 +410,8 @@ export class Bot {
 
     public remove() {
         this.anchor.destroy();
+        if (this.timeout) {
+            clearTimeout(this.timeout);
+        }
     }
 }

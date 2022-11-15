@@ -275,6 +275,17 @@ export default class App {
                 this.game = new ZombieHordeGame(this.context, this.assets, {
                     mode: params.mode,
                     graph: this.graph,
+                    bgm: 'artifact:2135937475934159608',
+                    target: {
+                        resourceId: 'artifact:2135887973172904891',
+                        transform: {
+                            position: {
+                                x: -3,
+                                y: 0,
+                                z: 0,
+                            }
+                        }
+                    },
                     ...params.settings,
                 });
                 this.game.onWin = () => {

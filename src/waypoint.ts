@@ -168,7 +168,7 @@ export type WaypointGraphData = {
 }[];
 
 export class WayPointGraph {
-    private nodes: Map<number, WayPointGraphNode>;
+    public nodes: Map<number, WayPointGraphNode>;
     private edges: Map<string, WayPointEdge>;
     private id: number = 0;
 
@@ -191,6 +191,8 @@ export class WayPointGraph {
             });
         });
     }
+
+    public nextHop: {[from: number]: {[to: number]: number}};
 
     constructor(private context: Context, private assets: AssetContainer, private options: WayPointGraphOptions) {
         this.nodes = new Map<number, WayPointGraphNode>();
@@ -305,6 +307,8 @@ export class WayPointGraph {
                 this.addEdge(sid, tid);
             })
         });
+
+        this.nextHop = this.floydWarshall();
     }
 
     public toJSON() {

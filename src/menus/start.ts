@@ -348,7 +348,10 @@ export class StartWindow extends Window {
 
         const whackamoleStartButton = side.find('#whackamole_start')[0] as Button;
         whackamoleStartButton.addUIEventHandler('click', (params: { user: User, id: string }) => {
-            this.onAction('start', params.user, { mode: 'whackamole', settings: {} });
+            const movingCheckbox = side.find('#moving_checkbox')[0] as Checkbox;
+            this.onAction('start', params.user, { mode: 'whackamole', settings: {
+                moving: movingCheckbox.checked,
+            } });
             this.refreshStartButton('whackamole_start');
         });
 
