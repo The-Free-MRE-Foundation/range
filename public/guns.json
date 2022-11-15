@@ -247,12 +247,42 @@
 					}
 				},
 				{
+					"name": "NavTech Scope",
+					"transform": {
+						"position": {
+							"x": -0.1,
+							"y": -0.007,
+							"z": 0.4539
+						},
+						"rotation": {
+							"x": 0,
+							"y": 0,
+							"z": 90
+						}
+					}
+				},
+				{
 					"name": "ForeGrip",
 					"transform": {
 						"position": {
 							"x": -0.1007,
 							"y": -0.007,
 							"z": 0.4539
+						},
+						"rotation": {
+							"x": 0,
+							"y": 0,
+							"z": 90
+						}
+					}
+				},
+				{
+					"name": "Angled Foregrip",
+					"transform": {
+						"position": {
+							"x": -0.1007,
+							"y": -0.007,
+							"z": 0.5419
 						},
 						"rotation": {
 							"x": 0,
@@ -331,6 +361,96 @@
 				"depth": 0.6535
 			},
 			"attachments": [
+				{
+					"name": "ForeGrip",
+					"transform": {
+						"position": {
+							"x": -0.1,
+							"y": 0,
+							"z": 0.3794
+						},
+						"rotation": {
+							"x": 0,
+							"y": 0,
+							"z": 90
+						}
+					}
+				},
+				{
+					"name": "Angled Foregrip",
+					"transform": {
+						"position": {
+							"x": -0.1,
+							"y": 0,
+							"z": 0.446
+						},
+						"rotation": {
+							"x": 0,
+							"y": 0,
+							"z": 90
+						}
+					}
+				},
+				{
+					"name": "Flash Hider",
+					"transform": {
+						"position": {
+							"x": -0.1,
+							"y": 0,
+							"z": 0.446
+						},
+						"rotation": {
+							"x": 0,
+							"y": 0,
+							"z": 90
+						}
+					}
+				},
+				{
+					"name": "Rifle Silencer",
+					"transform": {
+						"position": {
+							"x": -0.1,
+							"y": 0,
+							"z": 0.4386
+						},
+						"rotation": {
+							"x": 0,
+							"y": 0,
+							"z": 90
+						}
+					}
+				},
+				{
+					"name": "NavTech Scope",
+					"transform": {
+						"position": {
+							"x": -0.1,
+							"y": 0,
+							"z": 0.446
+						},
+						"rotation": {
+							"x": 0,
+							"y": 0,
+							"z": 90
+						}
+					}
+				},
+				{
+					"name": "LR Scope",
+					"transform": {
+						"position": {
+							"x": -0.0712,
+							"y": 0,
+							"z": 0.4452
+						},
+						"rotation": {
+							"x": 0,
+							"y": 0,
+							"z": 90
+						}
+					}
+				}
 			]
 		},
 		{
@@ -405,6 +525,36 @@
 				"depth": 0.6808
 			},
 			"attachments": [
+				{
+					"name": "Flash Light SMG",
+					"transform": {
+						"position": {
+							"x": -0.0744,
+							"y": 0,
+							"z": 0.2267
+						},
+						"rotation": {
+							"x": 0,
+							"y": 0,
+							"z": 90
+						}
+					}
+				},
+				{
+					"name": "Tactical Laser",
+					"transform": {
+						"position": {
+							"x": -0.0744,
+							"y": 0,
+							"z": 0.4252
+						},
+						"rotation": {
+							"x": 0,
+							"y": 0,
+							"z": 90
+						}
+					}
+				}
 			]
 		},
 		{
@@ -575,6 +725,284 @@
 				"depth": 1.1672
 			},
 			"attachments": [
+				{
+					"name": "LR Scope",
+					"transform": {
+						"position": {
+							"x": -0.077,
+							"y": -0.0057,
+							"z": 0.3713
+						},
+						"rotation": {
+							"x": 0,
+							"y": -6.334,
+							"z": 90
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "AKM",
+			"type": "RIFLE",
+			"attachPoint": "right-hand",
+			"model": {
+				"resourceId": "artifact:2135243398683033699",
+				"transform": {
+					"position": {
+						"x": -0.1007,
+						"y": -0.007,
+						"z": 0.4539
+					},
+					"rotation": {
+						"x": 0,
+						"y": 0,
+						"z": 90
+					}
+				}
+			},
+			"magazine": {
+				"size": 21,
+				"resourceId": "artifact:2135243399865827433",
+				"transform": {
+					"position": {
+						"x": 0.1163,
+						"y": -0.0065,
+						"z": 0.322
+					},
+					"rotation": {
+						"x": 0,
+						"y": 0,
+						"z": -90
+					}
+				}
+			},
+			"reload": {
+				"dimensions": {
+					"width": 0.0187,
+					"height": 0.2019,
+					"depth": 0.0755
+				},
+				"transform": {
+					"position": {
+						"x": 0.0191,
+						"y": 0,
+						"z": 0.2511
+					}
+				}
+			},
+			"bullet": {
+				"single": "artifact:2135243399471562855",
+				"auto": "artifact:2135243391737266248",
+				"fireRate": 21,
+				"transform": {
+					"position": {
+						"x": -0.0832,
+						"y": 0,
+						"z": 0.6543
+					}
+				}
+			},
+			"dimensions": {
+				"width": 0.0261,
+				"height": 0.2625,
+				"depth": 0.9239
+			},
+			"attachments": [
+			]
+		},
+		{
+			"name": "AP85",
+			"type": "PISTOL",
+			"attachPoint": "right-hand",
+			"model": {
+				"resourceId": "artifact:2135243403137384572",
+				"transform": {
+					"position": {
+						"x": -0.0239,
+						"y": 0,
+						"z": 0.1498
+					},
+					"rotation": {
+						"x": 0,
+						"y": 0,
+						"z": 90
+					}
+				}
+			},
+			"magazine": {
+				"size": 10,
+				"resourceId": "artifact:2135243399337345126",
+				"transform": {
+					"position": {
+						"x": 0.0237,
+						"y": -0.0076,
+						"z": 0.1371
+					},
+					"rotation": {
+						"x": 0,
+						"y": 0,
+						"z": -90
+					}
+				}
+			},
+			"reload": {
+				"dimensions": {
+					"width": 0.0287,
+					"height": 0.1168,
+					"depth": 0.05
+				},
+				"transform": {
+					"position": {
+						"x": -0.0025,
+						"y": 0,
+						"z": 0.0902
+					}
+				}
+			},
+			"bullet": {
+				"single": "artifact:2135243395537305685",
+				"transform": {
+					"position": {
+						"x": -0.0797,
+						"y": 0,
+						"z": 0.2519
+					}
+				}
+			},
+			"dimensions": {
+				"width": 0.0285,
+				"height": 0.1625,
+				"depth": 0.2155
+			},
+			"attachments": [
+				{
+					"name": "Tactical Laser",
+					"transform": {
+						"position": {
+							"x": -0.0635,
+							"y": 0,
+							"z": 0.2519
+						},
+						"rotation": {
+							"x": 0,
+							"y": 0,
+							"z": 90
+						}
+					}
+				},
+				{
+					"name": "Pistol Silencer",
+					"transform": {
+						"position": {
+							"x": -0.0264,
+							"y": 0,
+							"z": 0.1424
+						},
+						"rotation": {
+							"x": 0,
+							"y": 0,
+							"z": 90
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "C1911",
+			"type": "PISTOL",
+			"attachPoint": "right-hand",
+			"model": {
+				"resourceId": "artifact:2135243393045889100",
+				"transform": {
+					"position": {
+						"x": -0.0279,
+						"y": -0.0069,
+						"z": 0.15
+					},
+					"rotation": {
+						"x": 0,
+						"y": 0,
+						"z": 90
+					}
+				}
+			},
+			"magazine": {
+				"size": 10,
+				"resourceId": "artifact:2135243402483073144",
+				"transform": {
+					"position": {
+						"x": 0.0237,
+						"y": -0.0076,
+						"z": 0.1371
+					},
+					"rotation": {
+						"x": 0,
+						"y": 0,
+						"z": -90
+					}
+				}
+			},
+			"reload": {
+				"dimensions": {
+					"width": 0.0278,
+					"height": 0.1108,
+					"depth": 0.0413
+				},
+				"transform": {
+					"position": {
+						"x": 0.2634,
+						"y": -0.0069,
+						"z": 0.0885
+					}
+				}
+			},
+			"bullet": {
+				"single": "artifact:2135243399731609704",
+				"transform": {
+					"position": {
+						"x": -0.0851,
+						"y": -0.0069,
+						"z": 0.2634
+					}
+				}
+			},
+			"dimensions": {
+				"width": 0.0269,
+				"height": 0.15,
+				"depth": 0.2
+			},
+			"attachments": [
+				{
+					"name": "Tactical Laser",
+					"transform": {
+						"position": {
+							"x": -0.0685,
+							"y": -0.0069,
+							"z": 0.2652
+						},
+						"rotation": {
+							"x": 0,
+							"y": 0,
+							"z": 90
+						}
+					}
+				},
+				{
+					"name": "Pistol Silencer",
+					"transform": {
+						"position": {
+							"x": -0.0325,
+							"y": -0.0069,
+							"z": 0.1557
+						},
+						"rotation": {
+							"x": 0,
+							"y": 0,
+							"z": 90
+						}
+					}
+				}
 			]
 		}
 	],
@@ -590,6 +1018,26 @@
 						"x": 0,
 						"y": 0.0126,
 						"z": 0.1132
+					}
+				},
+				"dimensions": {
+					"width": 0.05,
+					"height": 0.05,
+					"depth": 0.05
+				}
+			}
+		},
+		{
+			"name": "Flash Light SMG",
+			"subType": "LIGHT",
+			"resourceId": "artifact:2134236191514427634",
+			"light": {
+				"resourceId": "artifact:2133552929938866370",
+				"transform": {
+					"position": {
+						"x": 0,
+						"y": 0,
+						"z": 0.2792
 					}
 				},
 				"dimensions": {
@@ -658,6 +1106,36 @@
 			}
 		},
 		{
+			"name": "LR Scope",
+			"subType": "SCOPE",
+			"resourceId": "artifact:2134236192034521332",
+			"scope": {
+				"resourceId": "artifact:2134236191120163056",
+				"transform": {
+					"position": {
+						"x": 0,
+						"y": 0.089,
+						"z": -0.2987
+					}
+				}
+			}
+		},
+		{
+			"name": "Red Dot",
+			"subType": "SCOPE",
+			"resourceId": "artifact:2135243403925913731",
+			"scope": {
+				"resourceId": "artifact:2135261450522853973",
+				"transform": {
+					"position": {
+						"x": 0,
+						"y": 0.025,
+						"z": -0.0199
+					}
+				}
+			}
+		},
+		{
 			"name": "Rifle Silencer",
 			"subType": "SILENCER",
 			"resourceId": "artifact:2133836408484266819",
@@ -665,6 +1143,11 @@
 				"single": "artifact:1696607946974167496",
 				"auto": "artifact:1696607946839949767"
 			}
+		},
+		{
+			"name": "Flash Hider",
+			"subType": "SILENCER",
+			"resourceId": "artifact:2134208507841347913"
 		},
 		{
 			"name": "ForeGrip",

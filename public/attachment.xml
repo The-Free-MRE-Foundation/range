@@ -1,6 +1,11 @@
 <row id='attachment' width= 120 height= 170 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_FLEX_START' flexDirection='FLEX_DIRECTION_COLUMN_REVERSE'>
-    <row width= 80 height= 170 justifyContent='JUSTIFY_FLEX_START' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_COLUMN_REVERSE' style='asset: "Background"'>
-        <Text width= 5 height= 20 options='{textHeight: 0.05, textAnchor: "middle-center"}'>Attachments</Text>
-        <Grid id='attachment_grid' width= 80 height= 60 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_FLEX_CENTER' flexDirection='FLEX_DIRECTION_COLUMN_REVERSE' options='{row:4, col:2, width:35, height:13, margins: 2, template_url: "attachment_cell.xml"}'></Grid>
+    <row width= 80 height= 170 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_COLUMN_REVERSE' style='asset: "Background"'>
+        <row width= 80 height= 80 justifyContent='JUSTIFY_FLEX_START' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_COLUMN_REVERSE'>
+            <Text width= 5 height= 20 options='{textHeight: 0.05, textAnchor: "middle-center"}'>Attachments</Text>
+            <Grid id='attachment_grid' width= 80 height= 60 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_FLEX_CENTER' flexDirection='FLEX_DIRECTION_COLUMN_REVERSE' options='{row:4, col:2, width:35, height:13, margins: 2, template_url: "attachment_cell.xml"}'></Grid>
+        </row>
+        <row width= 80 height= 90 justifyContent='JUSTIFY_FLEX_START' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_COLUMN_REVERSE'>
+            <Text width= 5 height= 20 options='{textHeight: 0.05, textAnchor: "middle-center"}'>Skins</Text>
+        </row>
     </row>
 </row>

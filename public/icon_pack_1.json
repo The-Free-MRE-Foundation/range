@@ -9,6 +9,24 @@
 		}
     },
     {
+        "name": "Add",
+        "resourceId": "artifact:2134493372797157755",
+		"dimensions": {
+			"width": 4,
+			"height": 4,
+			"depth": 0.004032
+		}
+    },
+    {
+        "name": "Arrow",
+        "resourceId": "artifact:2134557223701971672",
+		"dimensions": {
+			"width": 0.48,
+			"height": 0.17,
+			"depth": 0.004032
+		}
+    },
+    {
         "name": "Attachment Cell",
         "resourceId": "artifact:2133735698782487549",
 		"dimensions": {
@@ -39,8 +57,17 @@
         "name": "Enemy Cell",
         "resourceId": "artifact:2123943343334359456",
 		"dimensions": {
-			"width": 7.56,
-			"height": 7.56,
+			"width": 24,
+			"height": 8,
+			"depth": 0.004032
+		}
+    },
+    {
+        "name": "Enemy Cell Active",
+        "resourceId": "artifact:2134557224616329945",
+		"dimensions": {
+			"width": 24,
+			"height": 8,
 			"depth": 0.004032
 		}
     },
@@ -63,11 +90,11 @@
 		}
     },
     {
-        "name": "Page Active",
-        "resourceId": "artifact:2134244448085737490",
+        "name": "Minus",
+        "resourceId": "artifact:2134962345913353113",
 		"dimensions": {
-			"width": 0.74,
-			"height": 0.74,
+			"width": 5.12,
+			"height": 5.12,
 			"depth": 0.004032
 		}
     },
@@ -77,6 +104,33 @@
 		"dimensions": {
 			"width": 0.74,
 			"height": 0.74,
+			"depth": 0.004032
+		}
+    },
+    {
+        "name": "Page Active",
+        "resourceId": "artifact:2134244448085737490",
+		"dimensions": {
+			"width": 0.74,
+			"height": 0.74,
+			"depth": 0.004032
+		}
+    },
+    {
+        "name": "Play",
+        "resourceId": "artifact:2134962346567664539",
+		"dimensions": {
+			"width": 5.12,
+			"height": 5.12,
+			"depth": 0.004032
+		}
+    },
+    {
+        "name": "Plus",
+        "resourceId": "artifact:2134962345779135383",
+		"dimensions": {
+			"width": 5.12,
+			"height": 5.12,
 			"depth": 0.004032
 		}
     },
@@ -113,6 +167,42 @@
 		"dimensions": {
 			"width": 8.25,
 			"height": 0.53,
+			"depth": 0.004032
+		}
+    },
+    {
+        "name": "Square Cell",
+        "resourceId": "artifact:2134557223173489366",
+		"dimensions": {
+			"width": 7.56,
+			"height": 7.56,
+			"depth": 0.004032
+		}
+    },
+    {
+        "name": "Stop",
+        "resourceId": "artifact:2134962346827711388",
+		"dimensions": {
+			"width": 5.12,
+			"height": 5.12,
+			"depth": 0.004032
+		}
+    },
+    {
+        "name": "Switch Off",
+        "resourceId": "artifact:2134962345519088534",
+		"dimensions": {
+			"width": 5.87,
+			"height": 2.41,
+			"depth": 0.004032
+		}
+    },
+    {
+        "name": "Switch On",
+        "resourceId": "artifact:2134962346307617690",
+		"dimensions": {
+			"width": 5.87,
+			"height": 2.41,
 			"depth": 0.004032
 		}
     },

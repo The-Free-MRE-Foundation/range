@@ -1,4 +1,3 @@
-<row class="container" width=32 height=32 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_COLUMN_REVERSE' style='asset: "Enemy Cell"'>
-	<Button id=${cell.id} width=32 height=32 style='asset: "${cell.asset}"'></Button>
-	<Text positionType='POSITION_TYPE_ABSOLUTE' x=6 y=26 width=5 height=10 options='{textHeight: 0.05, textAnchor: "middle-left"}'>${cell.name}</Text>
+<row class="container" width=42 height=14 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_COLUMN_REVERSE' style='asset: "Enemy Cell"'>
+	<Button id=${cell.id} width=42 height=14 options='{textHeight: 0.04, textAnchor: "middle-center"}' style='asset: "${cell.asset}"'>${cell.name}</Button>
 </row>

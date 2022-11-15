@@ -93,7 +93,7 @@ export class ScopeAttachment extends Attachment {
 
 // silencer
 export interface SilencerAttachmentOptions extends AttachmentOptions {
-    silencer: {
+    silencer?: {
         single: string,
         auto: string
     }
@@ -101,10 +101,12 @@ export interface SilencerAttachmentOptions extends AttachmentOptions {
 
 export class SilencerAttachment extends Attachment {
     get single() {
-        return (this.options as SilencerAttachmentOptions).silencer.single;
+        const options = (this.options as SilencerAttachmentOptions);
+        return options.silencer ? options.silencer.single : undefined;
     }
     get auto() {
-        return (this.options as SilencerAttachmentOptions).silencer.auto;
+        const options = (this.options as SilencerAttachmentOptions);
+        return options.silencer ? options.silencer.auto : undefined;
     }
 
     constructor(context: Context, assets: AssetContainer, options: SilencerAttachmentOptions, parentId: Guid) {

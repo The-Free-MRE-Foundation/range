@@ -3,7 +3,7 @@
  * Licensed under the MIT License.
  */
 
-import { DegreesToRadians, Quaternion, ScaledTransform, ScaledTransformLike } from "@microsoft/mixed-reality-extension-sdk";
+import { DegreesToRadians, Quaternion, ScaledTransform, ScaledTransformLike, User } from "@microsoft/mixed-reality-extension-sdk";
 import fetch from "node-fetch";
 
 export function translate(transformLike: Partial<ScaledTransformLike>) {
@@ -61,4 +61,21 @@ export class Async {
             return Promise.resolve();
         }
     }
+}
+
+export function shuffleArray(array: any[]) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+}
+
+export function checkUserRole(user: User, role: string) {
+	if (user.properties['altspacevr-roles'] === role ||
+		user.properties['altspacevr-roles'].includes(role)) {
+		return true;
+	}
+	return false;
 }

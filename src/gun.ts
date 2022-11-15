@@ -43,6 +43,7 @@ const defaultSounds = {
 
 export interface GunOptions extends ItemOptions {
 	attachPoint: AttachPoint,
+	type: ItemType,
 	transform?: Partial<ScaledTransformLike>,
 	anchor: {
 		dimensions: { width: number, height: number, depth: number },
@@ -452,7 +453,7 @@ export class Gun {
 	private onRemoveAttachment(attachment: Attachment) {
 		switch (attachment.type) {
 			case AttachmentType.SCOPE:
-				this.bullet = { ...this._options.bullet };
+				this.bullet.transform = { ...this._options.bullet.transform };
 				if (this._options.model.attachment) {
 					this.resourceId = this._options.model.resourceId;
 					this.model.destroy();
@@ -481,10 +482,10 @@ export class Gun {
 				break;
 			case AttachmentType.SILENCER:
 				const silencer = (attachment as SilencerAttachment);
-				if (this._options.bullet.single) {
+				if (this._options.bullet.single && silencer.single) {
 					this.bullet.single = silencer.single;
 				}
-				if (this._options.bullet.auto) {
+				if (this._options.bullet.auto && silencer.auto) {
 					this.bullet.auto = silencer.auto;
 				}
 				break;

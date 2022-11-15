@@ -6,11 +6,11 @@
 import { Actor, AlphaMode, AssetContainer, Color3, Color4, Context, Guid, ParameterSet, User } from "@microsoft/mixed-reality-extension-sdk";
 import { AssetData } from "altvr-gui";
 import { AttachmentOptions } from "./attachment";
-import { Bot, defaultBotHitBoxes } from "./bot";
 import { GunOptions } from "./gun";
 import { Player } from "./player";
-import { fetchJSON } from "./utils";
+import { checkUserRole, fetchJSON } from "./utils";
 import { WayPointGraph } from "./waypoint";
+import { Game, TargetPracticeGame, WhackamoleGame } from "./game";
 
 const MIN_SYNC_INTERVAL = 1;
 
@@ -65,6 +65,11 @@ const DEFAULT_PLAYER_OPTIONS = {
     }
 }
 
+export interface WeaponsData {
+    guns: Partial<GunOptions>[],
+    attachments: Partial<AttachmentOptions>[],
+}
+
 /**
  * The main class of this app. All the logic goes here.
  */
@@ -76,8 +81,13 @@ export default class App {
     // sync fix
     private syncTimeout: NodeJS.Timeout;
 
-    private gunOptions: Partial<GunOptions>[];
-    private attachmentOptions: Partial<AttachmentOptions>[];
+    private weaponsData: WeaponsData;
+    get gunOptions() {
+        return this.weaponsData.guns;
+    }
+    get attachmentOptions() {
+        return this.weaponsData.attachments;
+    }
 
     // players
     private queue: User[] = [];
@@ -87,8 +97,11 @@ export default class App {
     // waypoint
     private graph: WayPointGraph;
 
+    // game
+    private game: Game;
+
     constructor(private context: Context, params: ParameterSet, private baseUrl: string) {
-        this.url = params['url'] as string;
+        this.url = params['url'] ? params['url'] as string : 'https://freemre.com/range/guns.json';
         this.assets = new AssetContainer(this.context);
         this.players = new Map<Guid, Player>();
         this.context.onStarted(() => this.started());
@@ -103,12 +116,11 @@ export default class App {
         await this.loadMaterials();
         await this.loadUIAssets(`${this.baseUrl}/icon_pack_1.json`);
         this.preload();
-        const options = this.url ? await fetchJSON(this.url) : DEFAULT_GUN_OPTIONS;
-        this.gunOptions = options.guns;
-        this.attachmentOptions = options.attachments;
+        this.weaponsData = this.url ? await fetchJSON(this.url) : DEFAULT_GUN_OPTIONS;
 
         this.graph = new WayPointGraph(this.context, this.assets, {
             node: {
+                name: 'default',
                 resourceId: 'artifact:2133418241777730301',
                 dimensions: {
                     width: 0.05, height: 0.05, depth: 0.05,
@@ -120,20 +132,16 @@ export default class App {
             }
         });
 
+        this.graph.addWayPointButtonBehavior((user, _, wayPoint) => {
+            const id = this.graph.wayPointIds.get(wayPoint);
+            const options = wayPoint.options;
+            const player = this.players.get(user.id);
+            if (!player) return;
+            player.onEdit('select', { id, options });
+        });
+
         const data = await fetchJSON('https://freemre.com/range/test.json');
         this.graph.import(data);
-
-        this.graph.wayPoints.forEach(w => {
-            new Bot(this.context, this.assets, {
-                spawn: w,
-                model: {
-                    resourceId: 'artifact:2133418241777730301',
-                },
-                hp: 200,
-                ttl: 200,
-                hitboxes: defaultBotHitBoxes
-            });
-        });
 
         this.initialized = true;
 
@@ -153,11 +161,15 @@ export default class App {
             if (this.players.has(user.id)) return;
             const player = new Player(this.context, this.assets, {
                 ...DEFAULT_PLAYER_OPTIONS,
+                weapons_data: {
+                    guns: this.gunOptions,
+                    attachments: this.attachmentOptions,
+                },
                 user,
             }, this.uiassets, this.baseUrl);
 
             player.onAction = (action: string, user: User, params: any) => {
-                console.log(action, params);
+                // if (!checkUserRole(user, 'moderator') && !['weapon', 'attachment'].includes(action)) return;
                 switch (action) {
                     case 'weapon':
                         const gunOptions = this.gunOptions.find(o => o.name == params.name);
@@ -167,7 +179,32 @@ export default class App {
                         const attachmentOptions = this.attachmentOptions.find(o => o.name == params.name);
                         player.gun?.addAttachment(attachmentOptions);
                         break;
+                    case 'edit':
+                        if (params.edit) {
+                            this.game?.stop();
+                        }
+                        this.graph.edit = params.edit;
+                        break;
+                    case 'waypoint':
+                        this.graph.addNode({
+                            name: params.name,
+                            resourceId: 'artifact:2133418241777730301',
+                            dimensions: {
+                                width: 0.05, height: 0.05, depth: 0.05,
+                            },
+                            transform: player.transform,
+                            edit: true,
+                        });
+                        break;
+                    case 'path':
+                        this.graph.addEdge(params.from.id, params.to.id, true);
+                        break;
+                    case 'delete':
+                        this.graph.removeNode(params.delete.id);
+                        player.onEdit('delete', {});
+                        break;
                     case 'start':
+                        this.startGame(params);
                         break;
                 }
             }
@@ -175,6 +212,31 @@ export default class App {
             this.players.set(user.id, player);
         } else {
             this.queue.push(user);
+        }
+    }
+
+    private startGame(params: any) {
+        if (this.game && this.game.mode == params.mode && this.game.started) {
+            this.game.stop();
+            return;
+        }
+        switch (params.mode) {
+            case 'target_practice':
+                this.game = new TargetPracticeGame(this.context, this.assets, {
+                    mode: 'target_practice',
+                    graph: this.graph,
+                    ...params.settings
+                });
+                this.game.start();
+                break;
+            case 'whackamole':
+                this.game = new WhackamoleGame(this.context, this.assets, {
+                    mode: 'whackamole',
+                    graph: this.graph,
+                    ...params.settings,
+                });
+                this.game.start();
+                break;
         }
     }
 

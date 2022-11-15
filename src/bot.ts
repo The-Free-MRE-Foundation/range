@@ -221,6 +221,10 @@ export class Bot {
 
     // logic
     private isDead: boolean = false;
+    get dead(){
+        return this.isDead;
+    }
+
     private isMissed: boolean = false;
     private _hp: number;
     private _ttl: number;
@@ -260,8 +264,8 @@ export class Bot {
         this.createHitBoxes();
 
         this.hp = this.options.hp ? this.options.hp : 100;
-        this.ttl = this.options.ttl ? this.options.ttl : 3;
-        if (this.ttl > 0) {
+        this.ttl = this.options.ttl;
+        if (this.ttl !== undefined && this.ttl > 0) {
             this.startTimer();
         }
     }
@@ -323,6 +327,7 @@ export class Bot {
     private async death() {
         if (this.isDead || this.isMissed) { return; }
         this.isDead = true;
+        this.hitboxes.forEach(h=>h.remove());
         await this.animate('death');
         if (this.onDeath) this.onDeath();
 
@@ -335,6 +340,7 @@ export class Bot {
     private async miss() {
         if (this.isDead || this.isMissed) { return; }
         this.isMissed = true;
+        this.hitboxes.forEach(h=>h.remove());
         await this.animate('missed');
         if (this.onMiss) this.onMiss();
 
@@ -369,8 +375,6 @@ export class Bot {
     }
 
     public remove() {
-        this.hitboxes.forEach(h => h.remove());
-        this.model.destroy();
         this.anchor.destroy();
     }
 }

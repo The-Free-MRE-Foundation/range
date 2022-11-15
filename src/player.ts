@@ -8,6 +8,7 @@ import { translate } from "./utils";
 export interface PlayerOptions {
     user: User,
     transform?: Partial<ScaledTransformLike>,
+    weapons_data: any,
     reload: {
         dimensions: { width: number, height: number, depth: number }
         transform?: Partial<ScaledTransformLike>,
@@ -24,6 +25,11 @@ export class Player {
     private magazine: Actor;
     private reload: Actor;
 
+    private tracker: Actor;
+    get transform() {
+        return this.tracker.transform.app.toJSON();
+    }
+
     public onAction: (action: string, user: User, params: any) => void;
 
     constructor(private context: Context, private assets: AssetContainer, private options: PlayerOptions, private uiassets: { [name: string]: AssetData }, private baseurl: string) {
@@ -32,6 +38,7 @@ export class Player {
     }
 
     private async init() {
+        this.createTracker();
         this.createReload();
 
         // UI
@@ -58,11 +65,16 @@ export class Player {
             options: {},
             attachment_url: "attachment.xml",
             editor_url: "editor.xml",
+            game_url: "game.xml",
+            weapons_data: this.options.weapons_data,
         });
         await startWindow.created();
         startWindow.onAction = (action: string, user: User, params?: any) => {
             this.onAction(action, user, params);
         };
+        startWindow.getPlayer = () => {
+            return this;
+        }
 
         this.gunApp.installWindow("start", startWindow);
     }
@@ -139,6 +151,18 @@ export class Player {
         this.createReload();
     }
 
+    private createTracker() {
+        this.tracker = Actor.Create(this.context, {
+            actor: {
+                subscriptions: ['transform'],
+                attachment: {
+                    userId: this.options.user.id,
+                    attachPoint: 'spine-middle',
+                }
+            }
+        });
+    }
+
     private createReload() {
         const local = translate(this.options.reload.transform).toJSON();
         const dim = this.options.reload.dimensions;
@@ -175,9 +199,26 @@ export class Player {
         });
     }
 
+    public onEdit(action: string, params: any) {
+        switch (action) {
+            case 'select':
+                if (this.gunApp.window == 'start') {
+                    (this.gunApp.opened as StartWindow).onEdit(action, params);
+                }
+                break;
+            case 'delete':
+                if (this.gunApp.window == 'start') {
+                    (this.gunApp.opened as StartWindow).onEdit(action, params);
+                }
+                break;
+        }
+    }
 
     public remove() {
+        this.tracker?.destroy();
+        this.reload?.destroy();
         this._gun?.remove();
+        this.gunApp?.remove();
     }
 
     public reattach() {

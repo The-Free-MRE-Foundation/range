@@ -2,9 +2,11 @@ import { Actor, AssetContainer, ButtonBehavior, ButtonEventData, ColliderType, C
 import { translate } from "./utils";
 
 export interface WayPointOptions {
+    name: string,
     resourceId: string,
     dimensions: { width: number, height: number, depth: number },
     transform?: Partial<ScaledTransformLike>,
+    edit?: boolean,
 }
 
 export class WayPoint {
@@ -21,6 +23,8 @@ export class WayPoint {
         this.anchor.appearance.enabled = this._edit;
         const material = this.assets.materials.find(m => m.name === (this._edit ? 'debug' : 'invis'));
         this.anchor.appearance.material = material;
+
+        this.preview.appearance.enabled = this._edit ? true : false;
     }
 
     get options() {
@@ -28,6 +32,7 @@ export class WayPoint {
     }
 
     constructor(private context: Context, private assets: AssetContainer, private _options: WayPointOptions) {
+        this._edit = this.options.edit ? true : false;
         const local = translate(this._options.transform ? this._options.transform : {}).toJSON();
         const dim = this._options.dimensions;
         const name = `${dim.width},${dim.height},${dim.depth}`;
@@ -40,7 +45,6 @@ export class WayPoint {
             actor: {
                 grabbable: true && this.edit ? true : false,
                 appearance: {
-                    enabled: true && this.edit ? true : false,
                     meshId: mesh.id,
                     materialId: material.id,
                 },
@@ -60,7 +64,7 @@ export class WayPoint {
             actor: {
                 parentId: this.anchor.id,
                 appearance: {
-                    enabled: this.edit ? false : true,
+                    enabled: this.edit ? true : false,
                 }
             }
         });
@@ -85,7 +89,8 @@ export class WayPoint {
 
 export interface WayPointEdgeOptions {
     resourceId: string,
-    length: number
+    length: number,
+    edit?: boolean
 }
 
 export class WayPointEdge {
@@ -101,8 +106,14 @@ export class WayPointEdge {
     }
 
     constructor(private context: Context, private assets: AssetContainer, private options: WayPointEdgeOptions, private source: WayPoint, private target: WayPoint) {
+        this._edit = this.options.edit ? true : false;
         this.model = Actor.CreateFromLibrary(this.context, {
             resourceId: this.options.resourceId,
+            actor: {
+                appearance: {
+                    enabled: this.edit ? true : false,
+                }
+            }
         });
     }
 
@@ -152,7 +163,7 @@ export class WayPointGraph {
 
     public wayPointIds: Map<WayPoint, number>;
 
-    private buttonBehavior: (user: User, _: ButtonEventData, wayPoint: WayPoint) => void;
+    private handler: (user: User, _: ButtonEventData, wayPoint: WayPoint) => void;
 
     get wayPoints() { return [...this.nodes.values()].map(n => n.wayPoint); }
 
@@ -178,7 +189,7 @@ export class WayPointGraph {
     public addNode(wayPointOptions?: WayPointOptions) {
         const options = wayPointOptions ? wayPointOptions : this.options.node;
         const wayPoint = new WayPoint(this.context, this.assets, options);
-        wayPoint.addButtonBehavior(this.buttonBehavior);
+        wayPoint.addButtonBehavior(this.handler);
         wayPoint.addGrabEndBehavior(() => {
             const nodeId = this.wayPointIds.get(wayPoint);
             const node = this.nodes.get(nodeId);
@@ -223,11 +234,11 @@ export class WayPointGraph {
         this.nodes.delete(nodeId);
     }
 
-    public async addEdge(sourceId: number, targetId: number) {
+    public async addEdge(sourceId: number, targetId: number, edit?: boolean) {
         if (!this.nodes.has(sourceId) || !this.nodes.has(targetId)) { return; }
         const source = this.nodes.get(sourceId);
         const target = this.nodes.get(targetId);
-        const edge = new WayPointEdge(this.context, this.assets, this.options.edge, source.wayPoint, target.wayPoint);
+        const edge = new WayPointEdge(this.context, this.assets, { ...this.options.edge, edit }, source.wayPoint, target.wayPoint);
         source.adjacency[targetId] = edge;
         await source.wayPoint.anchor.created();
         await target.wayPoint.anchor.created();
@@ -262,7 +273,7 @@ export class WayPointGraph {
     }
 
     public addWayPointButtonBehavior(handler: (user: User, _: ButtonEventData, wayPoint: WayPoint) => void) {
-        this.buttonBehavior = handler;
+        this.handler = handler;
     }
 
     public import(data: WaypointGraphData) {
