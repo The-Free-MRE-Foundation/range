@@ -498,7 +498,7 @@
 					"position": {
 						"x": 0,
 						"y": 0,
-						"z": 0.2465999
+						"z": 0.2466
 					},
 					"rotation": {
 						"x": 0,
@@ -766,13 +766,13 @@
 				"resourceId": "artifact:2135243399865827433",
 				"transform": {
 					"position": {
-						"x": 0.1163,
-						"y": -0.0065,
-						"z": 0.322
+						"x": 0.0523,
+						"y": -0.0076,
+						"z": 0.2082
 					},
 					"rotation": {
 						"x": 0,
-						"y": 0,
+						"y": -25.584,
 						"z": -90
 					}
 				}
@@ -835,21 +835,21 @@
 				"resourceId": "artifact:2135243399337345126",
 				"transform": {
 					"position": {
-						"x": 0.0237,
+						"x": 0.2082,
 						"y": -0.0076,
-						"z": 0.1371
+						"z": 0.1353
 					},
 					"rotation": {
 						"x": 0,
-						"y": 0,
+						"y": 24.648,
 						"z": -90
 					}
 				}
 			},
 			"reload": {
 				"dimensions": {
-					"width": 0.0287,
-					"height": 0.1168,
+					"width": 0.1168,
+					"height": 0.0287,
 					"depth": 0.05
 				},
 				"transform": {
@@ -857,6 +857,11 @@
 						"x": -0.0025,
 						"y": 0,
 						"z": 0.0902
+					},
+					"rotation": {
+						"x": 0,
+						"y": 11.054,
+						"z": 0
 					}
 				}
 			},
@@ -932,21 +937,21 @@
 				"resourceId": "artifact:2135243402483073144",
 				"transform": {
 					"position": {
-						"x": 0.0237,
-						"y": -0.0076,
-						"z": 0.1371
+						"x": 0.0622,
+						"y": -0.003,
+						"z": -0.003
 					},
 					"rotation": {
 						"x": 0,
-						"y": 0,
+						"y": 26.686,
 						"z": -90
 					}
 				}
 			},
 			"reload": {
 				"dimensions": {
-					"width": 0.0278,
-					"height": 0.1108,
+					"width": 0.1108,
+					"height": 0.0278,
 					"depth": 0.0413
 				},
 				"transform": {
@@ -954,6 +959,11 @@
 						"x": 0.2634,
 						"y": -0.0069,
 						"z": 0.0885
+					},
+					"rotation": {
+						"x": 0,
+						"y": 20.941,
+						"z": 0
 					}
 				}
 			},
@@ -995,6 +1005,1077 @@
 							"x": -0.0325,
 							"y": -0.0069,
 							"z": 0.1557
+						},
+						"rotation": {
+							"x": 0,
+							"y": 0,
+							"z": 90
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "CX8",
+			"type": "RIFLE",
+			"attachPoint": "right-hand",
+			"model": {
+				"resourceId": "artifact:2135243393440153677",
+				"transform": {
+					"position": {
+						"x": -0.0123,
+						"y": -0.0082,
+						"z": 0.0983
+					},
+					"rotation": {
+						"x": 0,
+						"y": 0,
+						"z": 90
+					}
+				}
+			},
+			"magazine": {
+				"size": 21,
+				"resourceId": "artifact:2135243402223026295",
+				"transform": {
+					"position": {
+						"x": 0.0562,
+						"y": -0.0073,
+						"z": 0.1
+					},
+					"rotation": {
+						"x": 0,
+						"y": 0,
+						"z": -90
+					}
+				}
+			},
+			"reload": {
+				"dimensions": {
+					"width": 0.03,
+					"height": 0.18,
+					"depth": 0.0442
+				},
+				"transform": {
+					"position": {
+						"x": 0.0214,
+						"y": -0.0082,
+						"z": 0.0832
+					}
+				}
+			},
+			"bullet": {
+				"single": "artifact:2135243401040232560",
+				"auto": "artifact:2135243396720099417",
+				"fireRate": 10,
+				"transform": {
+					"position": {
+						"x": -0.079,
+						"y": -0.0082,
+						"z": 0.4838
+					}
+				}
+			},
+			"dimensions": {
+				"width": 0.0515,
+				"height": 0.2462,
+				"depth": 0.7287
+			},
+			"attachments": [
+			]
+		},
+		{
+			"name": "DT22",
+			"type": "SHOTGUN",
+			"attachPoint": "right-hand",
+			"model": {
+				"resourceId": "artifact:2135243401174450289",
+				"transform": {
+					"position": {
+						"x": -0.1233,
+						"y": -0.007,
+						"z": 0.3351
+					},
+					"rotation": {
+						"x": 0,
+						"y": -12.923,
+						"z": 90
+					}
+				}
+			},
+			"magazine": {
+				"size": 7,
+				"resourceId": "artifact:2135243395017211987",
+				"transform": {
+					"position": {
+						"x": 0.0526,
+						"y": 0,
+						"z": 0.1159
+					},
+					"rotation": {
+						"x": 0,
+						"y": 0,
+						"z": 0
+					}
+				}
+			},
+			"reload": {
+				"mode": "SHELL",
+				"dimensions": {
+					"width": 0.071,
+					"height": 0.05,
+					"depth": 0.1249
+				},
+				"transform": {
+					"position": {
+						"x": -0.0951,
+						"y": -0.007,
+						"z": 0.2123
+					},
+					"rotation": {
+						"x": 0,
+						"y": -12.923,
+						"z": 0
+					}
+				}
+			},
+			"bullet": {
+				"single": "artifact:2135243397768675422",
+				"transform": {
+					"position": {
+						"x": -0.2711,
+						"y": -0.007,
+						"z": 0.9795
+					},
+					"rotation": {
+						"x": 0,
+						"y": -12.923,
+						"z": 0
+					}
+				}
+			},
+			"dimensions": {
+				"width": 0.082,
+				"height": 0.1886,
+				"depth": 1.2248
+			},
+			"attachments": [
+			]
+		},
+		{
+			"name": "Eder22",
+			"type": "PISTOL",
+			"attachPoint": "right-hand",
+			"model": {
+				"resourceId": "artifact:2135243402617290873",
+				"transform": {
+					"position": {
+						"x": 0.043,
+						"y": -0.0036,
+						"z": 0.0482
+					},
+					"rotation": {
+						"x": 0,
+						"y": 0,
+						"z": 90
+					}
+				}
+			},
+			"magazine": {
+				"size": 10,
+				"resourceId": "artifact:2135243392785842251",
+				"transform": {
+					"position": {
+						"x": -0.0173,
+						"y": -0.0007,
+						"z": 0.0452
+					},
+					"rotation": {
+						"x": 0,
+						"y": 12.459,
+						"z": -90
+					}
+				}
+			},
+			"reload": {
+				"dimensions": {
+					"width": 0.1115,
+					"height": 0.0339,
+					"depth": 0.05
+				},
+				"transform": {
+					"position": {
+						"x": -0.0041,
+						"y": -0.0036,
+						"z": 0.0831
+					},
+					"rotation": {
+						"x": 0,
+						"y": 23.525,
+						"z": 0
+					}
+				}
+			},
+			"bullet": {
+				"single": "artifact:2135243397114363995",
+				"transform": {
+					"position": {
+						"x": -0.0758,
+						"y": -0.0022,
+						"z": 0.2465
+					}
+				}
+			},
+			"dimensions": {
+				"width": 0.0319,
+				"height": 0.1612,
+				"depth": 0.1825
+			},
+			"attachments": [
+				{
+					"name": "Tactical Laser",
+					"transform": {
+						"position": {
+							"x": -0.0612,
+							"y": -0.002,
+							"z": 0.2478
+						},
+						"rotation": {
+							"x": 0,
+							"y": 0,
+							"z": 90
+						}
+					}
+				},
+				{
+					"name": "Pistol Silencer",
+					"transform": {
+						"position": {
+							"x": -0.0227,
+							"y": -0.0022,
+							"z": 0.1387
+						},
+						"rotation": {
+							"x": 0,
+							"y": 0,
+							"z": 90
+						}
+					}
+				},
+				{
+					"name": "Red Dot",
+					"transform": {
+						"position": {
+							"x": -0.08,
+							"y": -0.0028,
+							"z": 0.0845
+						},
+						"rotation": {
+							"x": 0,
+							"y": 0,
+							"z": 90
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "FAB",
+			"type": "SHOTGUN",
+			"attachPoint": "right-hand",
+			"model": {
+				"resourceId": "artifact:2135243400385921132",
+				"transform": {
+					"position": {
+						"x": -0.0892,
+						"y": -0.0078,
+						"z": 0.4399
+					},
+					"rotation": {
+						"x": 0,
+						"y": -13.071,
+						"z": 90
+					}
+				}
+			},
+			"magazine": {
+				"size": 7,
+				"resourceId": "artifact:2135243396845928538",
+				"transform": {
+					"position": {
+						"x": 0.0526,
+						"y": 0,
+						"z": 0.1159
+					},
+					"rotation": {
+						"x": 0,
+						"y": 0,
+						"z": 0
+					}
+				}
+			},
+			"reload": {
+				"mode": "SHELL",
+				"dimensions": {
+					"width": 0.05,
+					"height": 0.0623703,
+					"depth": 0.1442
+				},
+				"transform": {
+					"position": {
+						"x": -0.0877,
+						"y": -0.0078,
+						"z": 0.2221
+					},
+					"rotation": {
+						"x": 0,
+						"y": -13.071,
+						"z": 0
+					}
+				}
+			},
+			"bullet": {
+				"single": "artifact:2135243397894504543",
+				"transform": {
+					"position": {
+						"x": -0.1959,
+						"y": -0.0084,
+						"z": 0.6216
+					},
+					"rotation": {
+						"x": 0,
+						"y": -13.071,
+						"z": 0
+					}
+				}
+			},
+			"dimensions": {
+				"width": 0.0394,
+				"height": 0.1642,
+				"depth": 0.8546
+			},
+			"attachments": [
+				{
+					"name": "Tactical Laser",
+					"transform": {
+						"position": {
+							"x": -0.1619,
+							"y": -0.0078,
+							"z": 0.6343
+						},
+						"rotation": {
+							"x": 0,
+							"y": -13.071,
+							"z": 0
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Gruber",
+			"type": "PISTOL",
+			"attachPoint": "right-hand",
+			"model": {
+				"resourceId": "artifact:2135243401434497138",
+				"transform": {
+					"position": {
+						"x": -0.0744,
+						"y": -0.0043,
+						"z": 0.1124
+					},
+					"rotation": {
+						"x": 0,
+						"y": 0,
+						"z": 90
+					}
+				}
+			},
+			"magazine": {
+				"size": 10,
+				"resourceId": "artifact:2135243401694543988",
+				"transform": {
+					"position": {
+						"x": 0.1077,
+						"y": 0,
+						"z": 0.0591
+					},
+					"rotation": {
+						"x": 0,
+						"y": 31.387,
+						"z": -90
+					}
+				}
+			},
+			"reload": {
+				"dimensions": {
+					"width": 0.1184,
+					"height": 0.05,
+					"depth": 0.05
+				},
+				"transform": {
+					"position": {
+						"x": -0.0124,
+						"y": -0.0043,
+						"z": 0.0831
+					},
+					"rotation": {
+						"x": 0,
+						"y": 23.525,
+						"z": 0
+					}
+				}
+			},
+			"bullet": {
+				"single": "artifact:2135243394622947410",
+				"transform": {
+					"position": {
+						"x": -0.0744,
+						"y": -0.0043,
+						"z": 0.3181
+					}
+				}
+			},
+			"dimensions": {
+				"width": 0.0247,
+				"height": 0.1268,
+				"depth": 0.2743
+			},
+			"attachments": [
+			]
+		},
+		{
+			"name": "M4",
+			"type": "SHOTGUN",
+			"attachPoint": "right-hand",
+			"model": {
+				"resourceId": "artifact:2135243400520138861",
+				"transform": {
+					"position": {
+						"x": -0.0402,
+						"y": -0.0015,
+						"z": 0.4769
+					},
+					"rotation": {
+						"x": 0,
+						"y": -5.707,
+						"z": 90
+					}
+				}
+			},
+			"magazine": {
+				"size": 7,
+				"resourceId": "artifact:2135243399991656554",
+				"transform": {
+					"position": {
+						"x": 0.0526,
+						"y": 0,
+						"z": 0.1159
+					},
+					"rotation": {
+						"x": 0,
+						"y": 0,
+						"z": 0
+					}
+				}
+			},
+			"reload": {
+				"mode": "SHELL",
+				"dimensions": {
+					"width": 0.0731,
+					"height": 0.05,
+					"depth": 0.1447
+				},
+				"transform": {
+					"position": {
+						"x": -0.0799,
+						"y": -0.0015,
+						"z": 0.2508
+					},
+					"rotation": {
+						"x": 0,
+						"y": -5.707,
+						"z": 0
+					}
+				}
+			},
+			"bullet": {
+				"single": "artifact:2135243397500239965",
+				"transform": {
+					"position": {
+						"x": -0.1478,
+						"y": -0.0015,
+						"z": 0.7742
+					},
+					"rotation": {
+						"x": 0,
+						"y": -5.707,
+						"z": 0
+					}
+				}
+			},
+			"dimensions": {
+				"width": 0.0538,
+				"height": 0.1709,
+				"depth": 1.0302
+			},
+			"attachments": [
+				{
+					"name": "Tactical Laser",
+					"transform": {
+						"position": {
+							"x": -0.1145,
+							"y": -0.0015,
+							"z": 0.7824
+						},
+						"rotation": {
+							"x": 0,
+							"y": -5.707,
+							"z": 0
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "P350",
+			"type": "PISTOL",
+			"attachPoint": "right-hand",
+			"model": {
+				"resourceId": "artifact:2135243403791696002",
+				"transform": {
+					"position": {
+						"x": -0.0259,
+						"y": -0.0075,
+						"z": -0.0075
+					},
+					"rotation": {
+						"x": 0,
+						"y": 0,
+						"z": 90
+					}
+				}
+			},
+			"magazine": {
+				"size": 10,
+				"resourceId": "artifact:2135243399077298277",
+				"transform": {
+					"position": {
+						"x": 0.0466,
+						"y": -0.003,
+						"z": 0.1389
+					},
+					"rotation": {
+						"x": 0,
+						"y": 0,
+						"z": -90
+					}
+				}
+			},
+			"reload": {
+				"dimensions": {
+					"width": 0.1026,
+					"height": 0.05,
+					"depth": 0.0552
+				},
+				"transform": {
+					"position": {
+						"x": -0.0009,
+						"y": -0.0075,
+						"z": 0.0861
+					},
+					"rotation": {
+						"x": 0,
+						"y": 17.474,
+						"z": 0
+					}
+				}
+			},
+			"bullet": {
+				"single": "artifact:2135243392391577674",
+				"transform": {
+					"position": {
+						"x": -0.089,
+						"y": -0.0075,
+						"z": 0.2491
+					}
+				}
+			},
+			"dimensions": {
+				"width": 0.0371,
+				"height": 0.1587,
+				"depth": 0.2075
+			},
+			"attachments": [
+				{
+					"name": "Tactical Laser",
+					"transform": {
+						"position": {
+							"x": -0.0675,
+							"y": -0.0075,
+							"z": 0.252
+						},
+						"rotation": {
+							"x": 0,
+							"y": 0,
+							"z": 90
+						}
+					}
+				},
+				{
+					"name": "Pistol Silencer",
+					"transform": {
+						"position": {
+							"x": -0.0361,
+							"y": -0.0075,
+							"z": 0.1444
+						},
+						"rotation": {
+							"x": 0,
+							"y": 0,
+							"z": 90
+						}
+					}
+				},
+				{
+					"name": "Red Dot",
+					"transform": {
+						"position": {
+							"x": -0.097,
+							"y": -0.0075,
+							"z": 0.0911
+						},
+						"rotation": {
+							"x": 0,
+							"y": 0,
+							"z": 90
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "PT8",
+			"type": "PISTOL",
+			"attachPoint": "right-hand",
+			"model": {
+				"resourceId": "artifact:2135243396065787990",
+				"transform": {
+					"position": {
+						"x": -0.0409,
+						"y": -0.0087,
+						"z": 0.146
+					},
+					"rotation": {
+						"x": 0,
+						"y": 0,
+						"z": 90
+					}
+				}
+			},
+			"magazine": {
+				"size": 10,
+				"resourceId": "artifact:2135243401568714867",
+				"transform": {
+					"position": {
+						"x": 0.0856,
+						"y": -0.0044,
+						"z": 0.143
+					},
+					"rotation": {
+						"x": 0,
+						"y": 0,
+						"z": -90
+					}
+				}
+			},
+			"reload": {
+				"dimensions": {
+					"width": 0.0984,
+					"height": 0.05,
+					"depth": 0.0552
+				},
+				"transform": {
+					"position": {
+						"x": -0.0014,
+						"y": -0.0087,
+						"z": 0.0829
+					},
+					"rotation": {
+						"x": 0,
+						"y": 16.555,
+						"z": 0
+					}
+				}
+			},
+			"bullet": {
+				"single": "artifact:2135243403665866879",
+				"transform": {
+					"position": {
+						"x": -0.0832,
+						"y": -0.0087,
+						"z": 0.2377
+					}
+				}
+			},
+			"dimensions": {
+				"width": 0.0343,
+				"height": 0.1413,
+				"depth": 0.1952
+			},
+			"attachments": [
+				{
+					"name": "Tactical Laser",
+					"transform": {
+						"position": {
+							"x": -0.0658,
+							"y": -0.0087,
+							"z": 0.24
+						},
+						"rotation": {
+							"x": 0,
+							"y": 0,
+							"z": 90
+						}
+					}
+				},
+				{
+					"name": "Pistol Silencer",
+					"transform": {
+						"position": {
+							"x": -0.0303,
+							"y": -0.0085,
+							"z": 0.1334
+						},
+						"rotation": {
+							"x": 0,
+							"y": 0,
+							"z": 90
+						}
+					}
+				},
+				{
+					"name": "Red Dot",
+					"transform": {
+						"position": {
+							"x": -0.0901,
+							"y": -0.0087,
+							"z": 0.0892
+						},
+						"rotation": {
+							"x": 0,
+							"y": 0,
+							"z": 90
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "R90",
+			"type": "SMG",
+			"attachPoint": "right-hand",
+			"model": {
+				"resourceId": "artifact:2135243400125874283",
+				"transform": {
+					"position": {
+						"x": -0.1199,
+						"y": -0.004,
+						"z": -0.2032
+					},
+					"rotation": {
+						"x": 0,
+						"y": 0,
+						"z": 90
+					}
+				}
+			},
+			"magazine": {
+				"size": 50,
+				"resourceId": "artifact:2135243398548815970",
+				"transform": {
+					"position": {
+						"x": 0.0649,
+						"y": 0.0093,
+						"z": -0.1661
+					},
+					"rotation": {
+						"x": 0,
+						"y": 0,
+						"z": -90
+					}
+				}
+			},
+			"reload": {
+				"dimensions": {
+					"width": 0.05,
+					"height": 0.0237,
+					"depth": 0.273
+				},
+				"transform": {
+					"position": {
+						"x": -0.1101,
+						"y": -0.004,
+						"z": 0.0903
+					}
+				}
+			},
+			"bullet": {
+				"single": "artifact:2135243398288769121",
+				"auto": "artifact:2135243392131530825",
+				"fireRate": 14,
+				"transform": {
+					"position": {
+						"x": -0.0798,
+						"y": -0.004,
+						"z": 0.2710001
+					}
+				}
+			},
+			"dimensions": {
+				"width": 0.0456,
+				"height": 0.1875,
+				"depth": 0.4512
+			},
+			"attachments": [
+				{
+					"name": "Pistol Silencer",
+					"transform": {
+						"position": {
+							"x": -0.0275,
+							"y": -0.004,
+							"z": 0.1694
+						},
+						"rotation": {
+							"x": 0,
+							"y": 0,
+							"z": 90
+						}
+					}
+				},
+				{
+					"name": "Tactical Laser",
+					"transform": {
+						"position": {
+							"x": -0.0655,
+							"y": -0.004,
+							"z": 0.2588
+						},
+						"rotation": {
+							"x": 0,
+							"y": 0,
+							"z": 90
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Revolver",
+			"type": "PISTOL",
+			"attachPoint": "right-hand",
+			"model": {
+				"resourceId": "artifact:2135243404454396038",
+				"transform": {
+					"position": {
+						"x": -0.0366,
+						"y": -0.005,
+						"z": 0.1557
+					},
+					"rotation": {
+						"x": 0,
+						"y": 0,
+						"z": 90
+					}
+				}
+			},
+			"magazine": {
+				"size": 10,
+				"resourceId": "artifact:2135243398817251428",
+				"transform": {
+					"position": {
+						"x": 0.024,
+						"y": 0,
+						"z": 0.095
+					},
+					"rotation": {
+						"x": 0,
+						"y": 0,
+						"z": -90
+					}
+				}
+			},
+			"reload": {
+				"dimensions": {
+					"width": 0.035,
+					"height": 0.035,
+					"depth": 0.05
+				},
+				"transform": {
+					"position": {
+						"x": -0.076,
+						"y": -0.005,
+						"z": 0.1532
+					}
+				}
+			},
+			"bullet": {
+				"single": "artifact:2135243403011555451",
+				"transform": {
+					"position": {
+						"x": -0.0906,
+						"y": -0.005,
+						"z": 0.3356
+					}
+				}
+			},
+			"dimensions": {
+				"width": 0.0377,
+				"height": 0.14,
+				"depth": 0.2837
+			},
+			"attachments": [
+				{
+					"name": "LR Scope",
+					"transform": {
+						"position": {
+							"x": -0.0431,
+							"y": -0.005,
+							"z": 0.3909
+						},
+						"rotation": {
+							"x": 0,
+							"y": 0,
+							"z": 90
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "UMP",
+			"type": "SMG",
+			"attachPoint": "right-hand",
+			"model": {
+				"resourceId": "artifact:2135243402088808566",
+				"transform": {
+					"position": {
+						"x": -0.0744,
+						"y": -0.011,
+						"z": 0.1637
+					},
+					"rotation": {
+						"x": 0,
+						"y": 0,
+						"z": 90
+					}
+				}
+			},
+			"magazine": {
+				"size": 50,
+				"resourceId": "artifact:2135243401962979445",
+				"transform": {
+					"position": {
+						"x": 0.1323,
+						"y": -0.0026,
+						"z": 0.0278
+					},
+					"rotation": {
+						"x": 0,
+						"y": -11.29,
+						"z": -90
+					}
+				}
+			},
+			"reload": {
+				"dimensions": {
+					"width": 0.208,
+					"height": 0.0352,
+					"depth": 0.0429
+				},
+				"transform": {
+					"position": {
+						"x": 0.0333,
+						"y": -0.011,
+						"z": 0.2516
+					},
+					"rotation": {
+						"x": 0,
+						"y": 0.20799,
+						"z": 0
+					}
+				}
+			},
+			"bullet": {
+				"single": "artifact:2135243395277258836",
+				"auto": "artifact:2135243393834418200",
+				"fireRate": 14,
+				"transform": {
+					"position": {
+						"x": -0.0926,
+						"y": -0.011,
+						"z": 0.4223
+					}
+				}
+			},
+			"dimensions": {
+				"width": 0.0429,
+				"height": 0.3262813,
+				"depth": 0.64125
+			},
+			"attachments": [
+				{
+					"name": "Pistol Silencer",
+					"transform": {
+						"position": {
+							"x": -0.0403,
+							"y": -0.011,
+							"z": 0.3223
+						},
+						"rotation": {
+							"x": 0,
+							"y": 0,
+							"z": 90
+						}
+					}
+				},
+				{
+					"name": "SR Scope",
+					"transform": {
+						"position": {
+							"x": -0.1128,
+							"y": -0.011,
+							"z": 0.4187
+						},
+						"rotation": {
+							"x": 0,
+							"y": 0,
+							"z": 90
+						}
+					}
+				},
+				{
+					"name": "NavTech Scope",
+					"transform": {
+						"position": {
+							"x": -0.1155,
+							"y": -0.011,
+							"z": 0.4209
+						},
+						"rotation": {
+							"x": 0,
+							"y": 0,
+							"z": 90
+						}
+					}
+				},
+				{
+					"name": "ForeGrip",
+					"transform": {
+						"position": {
+							"x": -0.0909,
+							"y": -0.011,
+							"z": 0.3424
 						},
 						"rotation": {
 							"x": 0,
