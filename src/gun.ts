@@ -36,9 +36,9 @@ export enum ReloadMode {
 }
 
 const defaultSounds = {
-	'drop': 'artifact:1690630580212859369',
-	'insert': 'artifact:1690630589255778973',
-	'empty': 'artifact:1692113559984538059',
+	'drop': 'artifact:2135369357985841318',
+	'insert': 'artifact:2135369358380105895',
+	'empty': 'artifact:2135369358514323624',
 }
 
 export interface GunOptions extends ItemOptions {

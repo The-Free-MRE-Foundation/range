@@ -42,7 +42,7 @@ export class StartWindow extends Window {
     private gameXML: string;
 
     public onAction: (act: string, user: User, params?: any) => void;
-    public getPlayer: ()=>Player;
+    public getPlayer: () => Player;
 
     private _from: { [name: string]: string };
     get from() {
@@ -164,7 +164,7 @@ export class StartWindow extends Window {
         // editor
         const editorButton = this.menu.view.root.find('#editor_btn')[0] as Button;
         editorButton.addUIEventHandler('click', (params: { user: User, id: string }) => {
-            this.toggleEditorMenu();
+            this.toggleEditorMenu(params.user);
         });
 
         if (!this.editorXML) {
@@ -194,7 +194,8 @@ export class StartWindow extends Window {
     }
 
     private updateWeapons() {
-        const guns = (this.options as StartWindowOptions).weapons_data.guns;
+        const options = (this.options as StartWindowOptions);
+        const guns = [...options.weapons_data.guns, ...options.weapons_data.equipments];
 
         const items = guns.filter(g => !this.category || CATEGORIES_MAP[this.category].includes(g.type)).map((g, i) => ({
             id: i,
@@ -203,6 +204,8 @@ export class StartWindow extends Window {
         }));
         this.weaponList.items = items;
         this.weaponList.update();
+
+        this.weaponList.pageNum = 0;
     }
 
     private async toggleAttachmentMenu() {
@@ -241,7 +244,7 @@ export class StartWindow extends Window {
         if (side.find('#attachment').length <= 0) return;
 
         const attachments = player.gun.options.attachments;
-        const items = attachments.map((a,i)=>({
+        const items = attachments.map((a, i) => ({
             id: i,
             name: a.name
         }));
@@ -249,17 +252,17 @@ export class StartWindow extends Window {
         this.attachmentList.update();
     }
 
-    private async toggleEditorMenu() {
+    private async toggleEditorMenu(user: User) {
         const side = this.menu.view.root.find('#side')[0];
         const opened = side.find('#editor').length > 0;
         this.clear();
         if (opened) {
-            this.onAction('edit', null, { edit: false });
+            this.onAction('edit', user, { edit: false });
             return;
         }
         side.append(this.editorXML);
 
-        this.onAction('edit', null, { edit: true });
+        this.onAction('edit', user, { edit: true });
 
         this.enemyGrid = side.find('#enemy_grid')[0] as Grid;
         await this.enemyGrid.created();

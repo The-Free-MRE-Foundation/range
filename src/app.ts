@@ -10,7 +10,9 @@ import { GunOptions } from "./gun";
 import { Player } from "./player";
 import { checkUserRole, fetchJSON } from "./utils";
 import { WayPointGraph } from "./waypoint";
-import { Game, TargetPracticeGame, WhackamoleGame } from "./game";
+import { Game, SearchAndDestroyGame, TargetPracticeGame, WhackamoleGame, ZombieHordeGame } from "./game";
+import { EquipmentOptions } from "./equipment";
+import { ItemType } from "./item";
 
 const MIN_SYNC_INTERVAL = 1;
 
@@ -68,6 +70,7 @@ const DEFAULT_PLAYER_OPTIONS = {
 export interface WeaponsData {
     guns: Partial<GunOptions>[],
     attachments: Partial<AttachmentOptions>[],
+    equipments: Partial<EquipmentOptions>[],
 }
 
 /**
@@ -87,6 +90,9 @@ export default class App {
     }
     get attachmentOptions() {
         return this.weaponsData.attachments;
+    }
+    get equipmentOptions(){
+        return this.weaponsData.equipments;
     }
 
     // players
@@ -164,16 +170,25 @@ export default class App {
                 weapons_data: {
                     guns: this.gunOptions,
                     attachments: this.attachmentOptions,
+                    equipments: this.equipmentOptions,
                 },
                 user,
             }, this.uiassets, this.baseUrl);
 
             player.onAction = (action: string, user: User, params: any) => {
-                // if (!checkUserRole(user, 'moderator') && !['weapon', 'attachment'].includes(action)) return;
+                if (!(checkUserRole(user, 'moderator') || checkUserRole(user, 'host')) && !['weapon', 'attachment'].includes(action)) return;
                 switch (action) {
                     case 'weapon':
-                        const gunOptions = this.gunOptions.find(o => o.name == params.name);
-                        player.equipGun(gunOptions);
+                            const gunOptions = this.gunOptions.find(o => o.name == params.name);
+                            if (gunOptions){
+                                player.equipGun(gunOptions);
+                                break;
+                            }
+                            const equipmentOptions = this.equipmentOptions.find(o => o.name == params.name);
+                            if (equipmentOptions){
+                                player.equipEquipment(equipmentOptions);
+                                break;
+                            }
                         break;
                     case 'attachment':
                         const attachmentOptions = this.attachmentOptions.find(o => o.name == params.name);
@@ -199,11 +214,15 @@ export default class App {
                     case 'path':
                         this.graph.addEdge(params.from.id, params.to.id, true);
                         break;
+                    case 'path_delete':
+                        this.graph.removeEdge(params.from.id, params.to.id);
+                        break;
                     case 'delete':
                         this.graph.removeNode(params.delete.id);
                         player.onEdit('delete', {});
                         break;
                     case 'start':
+                        this.graph.edit = false;
                         this.startGame(params);
                         break;
                 }
@@ -216,28 +235,56 @@ export default class App {
     }
 
     private startGame(params: any) {
-        if (this.game && this.game.mode == params.mode && this.game.started) {
+        if (this.game && params.mode == this.game.mode && this.game.started) {
             this.game.stop();
             return;
         }
+
+        this.game?.stop();
         switch (params.mode) {
             case 'target_practice':
                 this.game = new TargetPracticeGame(this.context, this.assets, {
-                    mode: 'target_practice',
+                    mode: params.mode,
                     graph: this.graph,
                     ...params.settings
                 });
-                this.game.start();
                 break;
             case 'whackamole':
                 this.game = new WhackamoleGame(this.context, this.assets, {
-                    mode: 'whackamole',
+                    mode: params.mode,
                     graph: this.graph,
                     ...params.settings,
                 });
-                this.game.start();
+                break;
+            case 'search_and_destroy':
+                this.game = new SearchAndDestroyGame(this.context, this.assets, {
+                    mode: params.mode,
+                    graph: this.graph,
+                    ...params.settings,
+                });
+                this.game.onWin = () => {
+                    const sound = Actor.CreateFromLibrary(this.context, {
+                        resourceId: 'artifact:2135585300846477744',
+                    });
+                    setTimeout(() => {
+                        sound.destroy();
+                    }, 15 * 1000);
+                }
+                break;
+            case 'zombie_horde':
+                this.game = new ZombieHordeGame(this.context, this.assets, {
+                    mode: params.mode,
+                    graph: this.graph,
+                    ...params.settings,
+                });
+                this.game.onWin = () => {
+                }
                 break;
         }
+
+        this.game.onStop = () => {
+        }
+        this.game.start();
     }
 
     private sync() {

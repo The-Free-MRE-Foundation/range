@@ -2,7 +2,7 @@
     <row width= 120 height= 70 justifyContent='JUSTIFY_FLEX_START' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_COLUMN_REVERSE' style='asset: "Background"'>
         <row width= 120 height= 20 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_ROW'>
             <col width= 90 height= 20 justifyContent='JUSTIFY_FLEX_START' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_ROW'>
-                <Text width= 45 height= 20 options='{textHeight: 0.05, textAnchor: "middle-center"}'>Add a waypoint</Text>
+                <Text width= 45 height= 20 options='{textHeight: 0.05, textAnchor: "middle-center"}'>Add waypoints</Text>
                 <Text width= 45 height= 20 options='{textHeight: 0.03, textAnchor: "middle-center"}'>Select a type and click the "plus",
 a new target will spawn</Text>
             </col>
@@ -15,7 +15,7 @@ a new target will spawn</Text>
     <row width= 120 height= 30 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_COLUMN_REVERSE' style='asset: "Background"'>
         <row width= 120 height= 20 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_ROW'>
             <col width= 90 height= 20 justifyContent='JUSTIFY_FLEX_START' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_ROW'>
-                <Text width= 45 height= 20 options='{textHeight: 0.04, textAnchor: "middle-center"}'>Remove Waypoint</Text>
+                <Text width= 45 height= 20 options='{textHeight: 0.04, textAnchor: "middle-center"}'>Remove waypoints</Text>
                 <Text id='delete_text' width= 45 height= 20 options='{textHeight: 0.03, textAnchor: "middle-center"}' style='asset: "Enemy Cell"'></Text>
             </col>
             <col width= 30 height= 20 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_ROW'>
@@ -26,13 +26,16 @@ a new target will spawn</Text>
     <row width= 120 height= 70 justifyContent='JUSTIFY_FLEX_START' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_COLUMN_REVERSE' style='asset: "Background"'>
         <row width= 120 height= 20 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_ROW'>
             <col width= 90 height= 20 justifyContent='JUSTIFY_FLEX_START' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_ROW'>
-                <Text width= 45 height= 20 options='{textHeight: 0.05, textAnchor: "middle-center"}'>Add a path</Text>
-                <Text width= 45 height= 20 options='{textHeight: 0.03, textAnchor: "middle-center"}'>First click will set the "From" waypoint, 
+                <Text width= 40 height= 20 options='{textHeight: 0.05, textAnchor: "middle-center"}'>Paths</Text>
+                <Text width= 40 height= 20 options='{textHeight: 0.03, textAnchor: "middle-center"}'>First click will set the "From" waypoint, 
 second click will set the "To" waypoint,
-click plus to add a path in between</Text>
+click + to add a path in between
+click x to remove
+</Text>
             </col>
-            <col width= 30 height= 20 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_ROW'>
-                <Button id='path' width= 10 height= 10 options='{textHeight: 0.05, textAnchor: "middle-center"}' style='asset: "Add"'></Button>
+            <col width= 40 height= 20 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_ROW'>
+                <Button id='path' width= 7 height= 7 margins= 3 options='{textHeight: 0.05, textAnchor: "middle-center"}' style='asset: "Add"'></Button>
+                <Button id='path_remove' width= 7 height= 7 margins= 3 options='{textHeight: 0.05, textAnchor: "middle-center"}' style='asset: "Remove"'></Button>
             </col>
         </row>
         <row width= 120 height= 50 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_ROW'>

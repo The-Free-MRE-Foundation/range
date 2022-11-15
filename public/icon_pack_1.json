@@ -9,6 +9,15 @@
 		}
     },
     {
+        "name": "Action Mod",
+        "resourceId": "artifact: 2135792530988467180",
+		"dimensions": {
+			"width": 15.82,
+			"height": 5.16,
+			"depth": 0.004032
+		}
+    },
+    {
         "name": "Add",
         "resourceId": "artifact:2134493372797157755",
 		"dimensions": {
@@ -144,6 +153,15 @@
 		}
     },
     {
+        "name": "Remove",
+        "resourceId": "artifact:2135778333554639525",
+		"dimensions": {
+			"width": 4,
+			"height": 4,
+			"depth": 0.004032
+		}
+    },
+    {
         "name": "Slider",
         "resourceId": "artifact:2123943343468577185",
 		"dimensions": {
@@ -275,6 +293,150 @@
 		"dimensions": {
 			"width": 4.9,
 			"height": 4.9,
+			"depth": 0.004032
+		}
+    },
+    {
+        "name": "AKM",
+        "resourceId": "artifact:2135280828719038761",
+		"dimensions": {
+			"width": 5.12,
+			"height": 5.12,
+			"depth": 0.004032
+		}
+    },
+    {
+        "name": "AP85",
+        "resourceId": "artifact:2135280832644907318",
+		"dimensions": {
+			"width": 5.12,
+			"height": 5.12,
+			"depth": 0.004032
+		}
+    },
+    {
+        "name": "C1911",
+        "resourceId": "artifact:2135280832124813620",
+		"dimensions": {
+			"width": 5.12,
+			"height": 5.12,
+			"depth": 0.004032
+		}
+    },
+    {
+        "name": "CX8",
+        "resourceId": "artifact:2135280828844867882",
+		"dimensions": {
+			"width": 5.12,
+			"height": 5.12,
+			"depth": 0.004032
+		}
+    },
+    {
+        "name": "DT22",
+        "resourceId": "artifact:2135280831076237616",
+		"dimensions": {
+			"width": 5.12,
+			"height": 5.12,
+			"depth": 0.004032
+		}
+    },
+    {
+        "name": "Eder22",
+        "resourceId": "artifact:2135280832384860469",
+		"dimensions": {
+			"width": 5.12,
+			"height": 5.12,
+			"depth": 0.004032
+		}
+    },
+    {
+        "name": "FAB",
+        "resourceId": "artifact:2135280831470502194",
+		"dimensions": {
+			"width": 5.12,
+			"height": 5.12,
+			"depth": 0.004032
+		}
+    },
+    {
+        "name": "Gruber",
+        "resourceId": "artifact:2135280830153490734",
+		"dimensions": {
+			"width": 5.12,
+			"height": 5.12,
+			"depth": 0.004032
+		}
+    },
+    {
+        "name": "Gruber",
+        "resourceId": "artifact:2135280830153490734",
+		"dimensions": {
+			"width": 5.12,
+			"height": 5.12,
+			"depth": 0.004032
+		}
+    },
+    {
+        "name": "M4",
+        "resourceId": "artifact:2135280829104914731",
+		"dimensions": {
+			"width": 5.12,
+			"height": 5.12,
+			"depth": 0.004032
+		}
+    },
+    {
+        "name": "P350",
+        "resourceId": "artifact:2135280830421926191",
+		"dimensions": {
+			"width": 5.12,
+			"height": 5.12,
+			"depth": 0.004032
+		}
+    },
+    {
+        "name": "PT8",
+        "resourceId": "artifact:2135280831202066737",
+		"dimensions": {
+			"width": 5.12,
+			"height": 5.12,
+			"depth": 0.004032
+		}
+    },
+    {
+        "name": "R90",
+        "resourceId": "artifact:2135280830027661613",
+		"dimensions": {
+			"width": 5.12,
+			"height": 5.12,
+			"depth": 0.004032
+		}
+    },
+    {
+        "name": "Revolver",
+        "resourceId": "artifact:2135280831990595891",
+		"dimensions": {
+			"width": 5.12,
+			"height": 5.12,
+			"depth": 0.004032
+		}
+    },
+    {
+        "name": "UMP",
+        "resourceId": "artifact:2135280829373350188",
+		"dimensions": {
+			"width": 5.12,
+			"height": 5.12,
+			"depth": 0.004032
+		}
+    },
+    {
+        "name": "NVG",
+        "resourceId": "artifact:2135851986413683360",
+		"dimensions": {
+			"width": 5.12,
+			"height": 5.12,
 			"depth": 0.004032
 		}
     }

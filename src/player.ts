@@ -1,5 +1,6 @@
 import { Actor, AssetContainer, ButtonBehavior, ColliderType, CollisionLayer, Context, RigidBodyConstraints, ScaledTransformLike, User } from "@microsoft/mixed-reality-extension-sdk";
 import { AssetData } from "altvr-gui";
+import { Equipment, EquipmentOptions, EquipmentType, NVGEquipment, NVGEquipmentOptions } from "./equipment";
 import { Gun, GunOptions, GUN_COMMONS } from "./gun";
 import { StartWindow } from "./menus/start";
 import { MenuApp } from "./myapp";
@@ -24,6 +25,11 @@ export class Player {
     }
     private magazine: Actor;
     private reload: Actor;
+
+    private _equipment: Equipment;
+    get equipment() {
+        return this._equipment;
+    }
 
     private tracker: Actor;
     get transform() {
@@ -130,6 +136,29 @@ export class Player {
         }
     }
 
+    public equipEquipment(options: Partial<EquipmentOptions>) {
+        if (this._equipment && this._equipment.options.name == options.name) {
+            this._equipment.remove();
+            this._equipment = undefined;
+            return;
+        }
+
+        switch(options.subType){
+            case EquipmentType.NVG:
+                this._equipment = new NVGEquipment(this.context, this.assets, {
+                    ...options,
+                    user: this.options.user,
+                } as NVGEquipmentOptions);
+                break;
+            default:
+                this._equipment = new Equipment(this.context, this.assets, {
+                    ...options,
+                    user: this.options.user,
+                } as EquipmentOptions);
+                break;
+        }
+    }
+
     private equipMag() {
         if (!this._gun) { return; }
         if (this.magazine) { return; }
@@ -218,6 +247,7 @@ export class Player {
         this.tracker?.destroy();
         this.reload?.destroy();
         this._gun?.remove();
+        this._equipment?.remove();
         this.gunApp?.remove();
     }
 

@@ -72,7 +72,7 @@ export const defaultBotHitBoxes: HitBoxOptions[] = [
     {
         attachPoint: 'head',
         blood: {
-            resourceId: 'artifact:1694300604601467408',
+            resourceId: 'artifact:2135523391157829869',
         },
         trigger: {
             dimensions: {
@@ -94,7 +94,7 @@ export const defaultBotHitBoxes: HitBoxOptions[] = [
     {
         attachPoint: 'chest-center',
         blood: {
-            resourceId: 'artifact:1694300604601467408',
+            resourceId: 'artifact:2135523391157829869',
         },
         trigger: {
             dimensions: {
@@ -116,7 +116,7 @@ export const defaultBotHitBoxes: HitBoxOptions[] = [
     {
         attachPoint: 'chest-left',
         blood: {
-            resourceId: 'artifact:1694300604601467408',
+            resourceId: 'artifact:2135523391157829869',
         },
         trigger: {
             dimensions: {
@@ -138,7 +138,7 @@ export const defaultBotHitBoxes: HitBoxOptions[] = [
     {
         attachPoint: 'chest-right',
         blood: {
-            resourceId: 'artifact:1694300604601467408',
+            resourceId: 'artifact:2135523391157829869',
         },
         trigger: {
             dimensions: {
@@ -160,7 +160,7 @@ export const defaultBotHitBoxes: HitBoxOptions[] = [
     {
         attachPoint: 'chest-top',
         blood: {
-            resourceId: 'artifact:1694300604601467408',
+            resourceId: 'artifact:2135523391157829869',
         },
         trigger: {
             dimensions: {
@@ -182,7 +182,7 @@ export const defaultBotHitBoxes: HitBoxOptions[] = [
     {
         attachPoint: 'chest-bottom',
         blood: {
-            resourceId: 'artifact:1694300604601467408',
+            resourceId: 'artifact:2135523391157829869',
         },
         trigger: {
             dimensions: {
@@ -357,19 +357,22 @@ export class Bot {
             if (adjs.length == 0) { return; }
 
             const nextWayPoint = adjs[Math.floor(Math.random() * adjs.length)].wayPoint;
-            await this.moveTo(nextWayPoint);
+            const from = this.waypoint.anchor.transform.app.position.clone();
+            const to = nextWayPoint.anchor.transform.app.position.clone();
+            const dist = from.subtract(to).length();
+            await this.moveTo(nextWayPoint, dist);
             this.waypoint = nextWayPoint;
         }
     }
 
-    public async moveTo(wayPoint: WayPoint) {
+    public async moveTo(wayPoint: WayPoint, dist?: number) {
         await Animation.AnimateTo(this.context, this.anchor, {
             destination: {
                 transform: {
-                    local: wayPoint.anchor.transform.app,
+                    local: wayPoint.anchor.transform.app.toJSON(),
                 }
             },
-            duration: 1,
+            duration: dist ? dist / 1.5 : 1,
             easing: AnimationEaseCurves.Linear
         });
     }

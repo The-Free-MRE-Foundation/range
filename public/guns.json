@@ -10,7 +10,7 @@
 				"depth": 0.235
 			},
 			"model": {
-				"resourceId": "artifact:2123959088265035918",
+				"resourceId": "artifact:2135579993332253231",
 				"transform": {
 					"position": {
 						"x": -0.05343617,
@@ -25,7 +25,7 @@
 				}
 			},
 			"bullet": {
-				"single": "artifact:2123959088139206797",
+				"single": "artifact:2135579992937988654",
 				"transform": {
 					"position": {
 						"x": 0,
@@ -290,6 +290,21 @@
 							"z": 90
 						}
 					}
+				},
+				{
+					"name": "AN/PEQ Laser",
+					"transform": {
+						"position": {
+							"x": -0.1026,
+							"y": 0.033,
+							"z": 0.51
+						},
+						"rotation": {
+							"x": 0,
+							"y": 0,
+							"z": 90
+						}
+					}
 				}
 			]
 		},
@@ -443,6 +458,21 @@
 							"x": -0.0712,
 							"y": 0,
 							"z": 0.4452
+						},
+						"rotation": {
+							"x": 0,
+							"y": 0,
+							"z": 90
+						}
+					}
+				},
+				{
+					"name": "AN/PEQ Laser",
+					"transform": {
+						"position": {
+							"x": -0.1021,
+							"y": 0.0361,
+							"z": 0.498
 						},
 						"rotation": {
 							"x": 0,
@@ -750,9 +780,9 @@
 				"resourceId": "artifact:2135243398683033699",
 				"transform": {
 					"position": {
-						"x": -0.1007,
-						"y": -0.007,
-						"z": 0.4539
+						"x": -0.0679,
+						"y": 0,
+						"z": 0.3231
 					},
 					"rotation": {
 						"x": 0,
@@ -779,8 +809,8 @@
 			},
 			"reload": {
 				"dimensions": {
-					"width": 0.0187,
-					"height": 0.2019,
+					"width": 0.2019,
+					"height": 0.0187,
 					"depth": 0.0755
 				},
 				"transform": {
@@ -788,13 +818,18 @@
 						"x": 0.0191,
 						"y": 0,
 						"z": 0.2511
+					},
+					"rotation": {
+						"x": 0,
+						"y": -28.779,
+						"z": 0
 					}
 				}
 			},
 			"bullet": {
 				"single": "artifact:2135243399471562855",
 				"auto": "artifact:2135243391737266248",
-				"fireRate": 21,
+				"fireRate": 10,
 				"transform": {
 					"position": {
 						"x": -0.0832,
@@ -808,8 +843,7 @@
 				"height": 0.2625,
 				"depth": 0.9239
 			},
-			"attachments": [
-			]
+			"attachments": []
 		},
 		{
 			"name": "AP85",
@@ -835,8 +869,8 @@
 				"resourceId": "artifact:2135243399337345126",
 				"transform": {
 					"position": {
-						"x": 0.2082,
-						"y": -0.0076,
+						"x": 0.0565,
+						"y": 0,
 						"z": 0.1353
 					},
 					"rotation": {
@@ -1017,7 +1051,7 @@
 		},
 		{
 			"name": "CX8",
-			"type": "RIFLE",
+			"type": "SMG",
 			"attachPoint": "right-hand",
 			"model": {
 				"resourceId": "artifact:2135243393440153677",
@@ -1035,7 +1069,7 @@
 				}
 			},
 			"magazine": {
-				"size": 21,
+				"size": 27,
 				"resourceId": "artifact:2135243402223026295",
 				"transform": {
 					"position": {
@@ -1081,8 +1115,7 @@
 				"height": 0.2462,
 				"depth": 0.7287
 			},
-			"attachments": [
-			]
+			"attachments": []
 		},
 		{
 			"name": "DT22",
@@ -1104,7 +1137,7 @@
 				}
 			},
 			"magazine": {
-				"size": 7,
+				"size": 4,
 				"resourceId": "artifact:2135243395017211987",
 				"transform": {
 					"position": {
@@ -1159,8 +1192,7 @@
 				"height": 0.1886,
 				"depth": 1.2248
 			},
-			"attachments": [
-			]
+			"attachments": []
 		},
 		{
 			"name": "Eder22",
@@ -1182,7 +1214,7 @@
 				}
 			},
 			"magazine": {
-				"size": 10,
+				"size": 15,
 				"resourceId": "artifact:2135243392785842251",
 				"transform": {
 					"position": {
@@ -1392,7 +1424,7 @@
 				}
 			},
 			"magazine": {
-				"size": 10,
+				"size": 14,
 				"resourceId": "artifact:2135243401694543988",
 				"transform": {
 					"position": {
@@ -1441,8 +1473,7 @@
 				"height": 0.1268,
 				"depth": 0.2743
 			},
-			"attachments": [
-			]
+			"attachments": []
 		},
 		{
 			"name": "M4",
@@ -1464,7 +1495,7 @@
 				}
 			},
 			"magazine": {
-				"size": 7,
+				"size": 6,
 				"resourceId": "artifact:2135243399991656554",
 				"transform": {
 					"position": {
@@ -1547,7 +1578,7 @@
 					"position": {
 						"x": -0.0259,
 						"y": -0.0075,
-						"z": -0.0075
+						"z": 0.1487
 					},
 					"rotation": {
 						"x": 0,
@@ -1557,7 +1588,7 @@
 				}
 			},
 			"magazine": {
-				"size": 10,
+				"size": 12,
 				"resourceId": "artifact:2135243399077298277",
 				"transform": {
 					"position": {
@@ -1674,7 +1705,7 @@
 				}
 			},
 			"magazine": {
-				"size": 10,
+				"size": 8,
 				"resourceId": "artifact:2135243401568714867",
 				"transform": {
 					"position": {
@@ -1839,7 +1870,7 @@
 			},
 			"attachments": [
 				{
-					"name": "Pistol Silencer",
+					"name": "SMG Silencer",
 					"transform": {
 						"position": {
 							"x": -0.0275,
@@ -1860,6 +1891,36 @@
 							"x": -0.0655,
 							"y": -0.004,
 							"z": 0.2588
+						},
+						"rotation": {
+							"x": 0,
+							"y": 0,
+							"z": 90
+						}
+					}
+				},
+				{
+					"name": "SR Scope",
+					"transform": {
+						"position": {
+							"x": -0.1299,
+							"y": -0.004,
+							"z": 0.4298
+						},
+						"rotation": {
+							"x": 0,
+							"y": 0,
+							"z": 90
+						}
+					}
+				},
+				{
+					"name": "NavTech Scope",
+					"transform": {
+						"position": {
+							"x": -0.1295,
+							"y": -0.004,
+							"z": 0.4276
 						},
 						"rotation": {
 							"x": 0,
@@ -1890,7 +1951,7 @@
 				}
 			},
 			"magazine": {
-				"size": 10,
+				"size": 6,
 				"resourceId": "artifact:2135243398817251428",
 				"transform": {
 					"position": {
@@ -1972,7 +2033,7 @@
 				}
 			},
 			"magazine": {
-				"size": 50,
+				"size": 30,
 				"resourceId": "artifact:2135243401962979445",
 				"transform": {
 					"position": {
@@ -2008,7 +2069,7 @@
 			},
 			"bullet": {
 				"single": "artifact:2135243395277258836",
-				"auto": "artifact:2135243393834418200",
+				"auto": "artifact:2135243393834418255",
 				"fireRate": 14,
 				"transform": {
 					"position": {
@@ -2025,7 +2086,7 @@
 			},
 			"attachments": [
 				{
-					"name": "Pistol Silencer",
+					"name": "SMG Silencer",
 					"transform": {
 						"position": {
 							"x": -0.0403,
@@ -2076,6 +2137,21 @@
 							"x": -0.0909,
 							"y": -0.011,
 							"z": 0.3424
+						},
+						"rotation": {
+							"x": 0,
+							"y": 0,
+							"z": 90
+						}
+					}
+				},
+				{
+					"name": "AN/PEQ Laser",
+					"transform": {
+						"position": {
+							"x": -0.0957,
+							"y": 0.0256,
+							"z": 0.3647
 						},
 						"rotation": {
 							"x": 0,
@@ -2149,11 +2225,40 @@
 			}
 		},
 		{
+			"name": "AN/PEQ Laser",
+			"subType": "LIGHT",
+			"resourceId": "artifact:2135827139751051570",
+			"light": {
+				"resourceId": "artifact:2133819145198764651",
+				"transform": {
+					"position": {
+						"x": -0.0024,
+						"y": -0.0274,
+						"z": 0.0143
+					}
+				},
+				"dimensions": {
+					"width": 0.026,
+					"height": 0.071,
+					"depth": 0.061
+				}
+			}
+		},
+		{
 			"name": "Pistol Silencer",
 			"subType": "SILENCER",
 			"resourceId": "artifact:2133809280329974284",
 			"silencer": {
 				"single": "artifact:1696607946974167496"
+			}
+		},
+		{
+			"name": "SMG Silencer",
+			"subType": "SILENCER",
+			"resourceId": "artifact:2133809280329974284",
+			"silencer": {
+				"single": "artifact:1696607946974167496",
+				"auto": "artifact:1696607946839949767"
 			}
 		},
 		{
@@ -2211,7 +2316,7 @@
 					"position": {
 						"x": 0,
 						"y": 0.025,
-						"z": -0.0199
+						"z": -0.021
 					}
 				}
 			}
@@ -2239,6 +2344,51 @@
 			"name": "Angled Foregrip",
 			"subType": "GRIP",
 			"resourceId": "artifact:2134208506658554178"
+		}
+	],
+	"equipments": [
+		{
+			"name": "NVG",
+			"type": "EQUIPMENT",
+			"subType": "NVG",
+			"resourceId": "artifact:2135842908522152020",
+			"transform": {
+				"position": {
+					"x": 0,
+					"y": 0.0431,
+					"z": 0.2173
+				},
+				"rotation": {
+					"x": -90,
+					"y": 0,
+					"z": 0
+				}
+			},
+			"attachPoint": "head",
+			"light": "artifact:2135842909042245717",
+			"button": {
+				"dimensions": {
+					"width": 0.1,
+					"height": 0.1,
+					"depth": 0.1
+				},
+				"transform": {
+					"position": {
+						"x": 0.1339,
+						"y": -0.0022,
+						"z": -0.0259
+					},
+					"rotation": {
+						"x": 0,
+						"y": 0,
+						"z": 90
+					}
+				}
+			},
+			"sounds": {
+				"on": "artifact:2135872406919577727",
+				"off": "artifact:2135872409150947456"
+			}
 		}
 	]
 }

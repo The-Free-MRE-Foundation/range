@@ -105,6 +105,16 @@ export class WayPointEdge {
         this.model.appearance.enabled = this._edit;
     }
 
+    private _length: number;
+    get length() {
+        if (this._length === undefined) {
+            const s = this.source.anchor.transform.app.position.clone();
+            const t = this.target.anchor.transform.app.position.clone();
+            this._length = s.subtract(t).length();
+        }
+        return this._length;
+    }
+
     constructor(private context: Context, private assets: AssetContainer, private options: WayPointEdgeOptions, private source: WayPoint, private target: WayPoint) {
         this._edit = this.options.edit ? true : false;
         this.model = Actor.CreateFromLibrary(this.context, {
@@ -159,6 +169,7 @@ export type WaypointGraphData = {
 
 export class WayPointGraph {
     private nodes: Map<number, WayPointGraphNode>;
+    private edges: Map<string, WayPointEdge>;
     private id: number = 0;
 
     public wayPointIds: Map<WayPoint, number>;
@@ -183,6 +194,7 @@ export class WayPointGraph {
 
     constructor(private context: Context, private assets: AssetContainer, private options: WayPointGraphOptions) {
         this.nodes = new Map<number, WayPointGraphNode>();
+        this.edges = new Map<string, WayPointEdge>();
         this.wayPointIds = new Map<WayPoint, number>();
     }
 
@@ -240,6 +252,7 @@ export class WayPointGraph {
         const target = this.nodes.get(targetId);
         const edge = new WayPointEdge(this.context, this.assets, { ...this.options.edge, edit }, source.wayPoint, target.wayPoint);
         source.adjacency[targetId] = edge;
+        this.edges.set(`${sourceId},${targetId}`, edge);
         await source.wayPoint.anchor.created();
         await target.wayPoint.anchor.created();
         edge.transform();
@@ -317,5 +330,59 @@ export class WayPointGraph {
                 adjacency
             }
         });
+    }
+
+    private floydWarshall() {
+        const dist: any = {};
+        const next: any = {};
+        [...this.nodes.keys()].forEach(k => {
+            dist[k] = {};
+            next[k] = {};
+            const n = this.nodes.get(k);
+            // adjacenty nodes
+            Object.keys(n.adjacency).map(x => parseInt(x)).forEach(a => {
+                dist[k][a] = this.edges.get(`${k},${a}`).length;
+                next[k][a] = a;
+            });
+            // rest of the nodes
+            [...this.nodes.keys()].forEach(l => {
+                if (dist[k][l] === undefined) {
+                    dist[k][l] = Infinity;
+                }
+                if (k == l) {
+                    dist[k][l] = 0;
+                }
+            });
+        });
+
+        [...this.nodes.keys()].forEach(k => {
+            [...this.nodes.keys()].forEach(i => {
+                [...this.nodes.keys()].forEach(j => {
+                    if (dist[i][j] > dist[i][k] + dist[k][j]) {
+                        dist[i][j] = dist[i][k] + dist[k][j];
+                        next[i][j] = next[i][k];
+                    }
+                })
+            })
+        });
+
+        return next;
+    }
+
+    public nearestWayPoint(actor: Actor) {
+        const p1 = actor.transform.app.position;
+
+        let min = Infinity;
+        let wp;
+        this.nodes.forEach(w => {
+            const p2 = w.wayPoint.anchor.transform.app.position;
+            const l = p1.subtract(p2).length();
+            if (l < min) {
+                min = l;
+                wp = w.wayPoint;
+            }
+        });
+
+        return wp as WayPoint;
     }
 }
