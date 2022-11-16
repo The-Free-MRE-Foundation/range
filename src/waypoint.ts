@@ -175,6 +175,7 @@ export class WayPointGraph {
     public wayPointIds: Map<WayPoint, number>;
 
     private handler: (user: User, _: ButtonEventData, wayPoint: WayPoint) => void;
+    private grabHandler: () => void;
 
     get wayPoints() { return [...this.nodes.values()].map(n => n.wayPoint); }
 
@@ -217,6 +218,8 @@ export class WayPointGraph {
             Object.keys(node.adjacency).forEach(k => {
                 node.adjacency[parseInt(k)].transform();
             });
+
+            this.grabHandler();
         });
         this.nodes.set(this.id, {
             wayPoint,
@@ -287,8 +290,12 @@ export class WayPointGraph {
         this.id = 0;
     }
 
-    public addWayPointButtonBehavior(handler: (user: User, _: ButtonEventData, wayPoint: WayPoint) => void) {
+    public addWayPointHandler(handler: (user: User, _: ButtonEventData, wayPoint: WayPoint) => void) {
         this.handler = handler;
+    }
+
+    public addWayPointGrabHandler(handler: () => void) {
+        this.grabHandler = handler;
     }
 
     public import(data: WaypointGraphData) {
@@ -307,8 +314,6 @@ export class WayPointGraph {
                 this.addEdge(sid, tid);
             })
         });
-
-        this.nextHop = this.floydWarshall();
     }
 
     public toJSON() {
@@ -325,15 +330,19 @@ export class WayPointGraph {
                 rotation: { x: rot.x / DegreesToRadians, y: rot.y / DegreesToRadians, z: rot.z / DegreesToRadians }
             };
             const adjacency = Object.keys(node.adjacency).map(id => newIds.get(parseInt(id)));
-
+            
+            const o = {...node.wayPoint.options};
+            delete o.edit;
             return {
-                waypointOptions: {
-                    ...node.wayPoint.options,
-                    transform,
-                },
+                ...o,
+                transform,
                 adjacency
             }
         });
+    }
+
+    public calcShortestPaths(){
+        this.nextHop = this.floydWarshall();
     }
 
     private floydWarshall() {

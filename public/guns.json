@@ -346,8 +346,8 @@
 			},
 			"reload": {
 				"dimensions": {
-					"width": 0.03,
-					"height": 0.1637,
+					"width": 0.1637,
+					"height": 0.03,
 					"depth": 0.07625
 				},
 				"transform": {
@@ -973,7 +973,7 @@
 					"position": {
 						"x": 0.0622,
 						"y": -0.003,
-						"z": -0.003
+						"z": 0.1372
 					},
 					"rotation": {
 						"x": 0,
@@ -990,7 +990,7 @@
 				},
 				"transform": {
 					"position": {
-						"x": 0.2634,
+						"x": -0.0141,
 						"y": -0.0069,
 						"z": 0.0885
 					},
@@ -1086,8 +1086,8 @@
 			},
 			"reload": {
 				"dimensions": {
-					"width": 0.03,
-					"height": 0.18,
+					"width": 0.18,
+					"height": 0.03,
 					"depth": 0.0442
 				},
 				"transform": {

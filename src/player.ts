@@ -17,6 +17,7 @@ export interface PlayerOptions {
 }
 
 export class Player {
+    private logo: Actor;
     private gunApp: MenuApp;
 
     private _gun: Gun;
@@ -58,9 +59,21 @@ export class Player {
         });
 
         await this.gunApp.created();
+        this.gunApp.anchor.attach(this.options.user.id, 'spine-middle');
+        this.gunApp.anchor.transform.local.copy(
+            {
+                position: {
+                    x: -0.5, y: 0, z: 1.2
+                },
+                scale: {
+                    x: 0.72, y: 0.72, z: 0.72
+                }
+            }
+        );
+
         await this.installStartWindow();
 
-        this.gunApp.window = 'start';
+        this.gunApp.window = '';
     }
 
     private async installStartWindow() {
@@ -86,28 +99,42 @@ export class Player {
     }
 
     private async debug() {
-        const local = translate({}).toJSON();
-        const debug = Actor.Create(this.context, {
+        this.logo = Actor.CreateFromLibrary(this.context, {
+            resourceId: 'artifact:2136479123109839116',
             actor: {
                 transform: {
-                    local,
+                    local: {
+                        position: {
+                            x: -0.1,
+                            y: 0,
+                            z: 0
+                        },
+                        scale: {
+                            x: 4,
+                            y: 4,
+                            z: 4,
+                        }
+                    }
                 },
                 appearance: {
-                    meshId: this.assets.createBoxMesh("debug_mesh", 0.05, 0.05, 0.05).id,
-                    materialId: this.assets.materials.find((m) => m.name == "debug").id,
+                    meshId: this.assets.createSphereMesh("debug_mesh", 0.03).id,
+                    materialId: this.assets.materials.find((m) => m.name == "invis").id,
                 },
                 collider: {
                     geometry: { shape: ColliderType.Box },
                     layer: CollisionLayer.Hologram,
                 },
                 grabbable: false,
+                exclusiveToUser: this.options.user.id,
             },
         });
 
-        debug.setBehavior(ButtonBehavior).onClick(async (user, _) => {
-            await this.installStartWindow();
-            this.gunApp.window = "";
-            this.gunApp.window = "start";
+        this.logo.setBehavior(ButtonBehavior).onClick(async (user, _) => {
+            if (this.gunApp.window == 'start') {
+                this.gunApp.window = '';
+            } else {
+                this.gunApp.window = 'start';
+            }
         });
     }
 
@@ -143,7 +170,7 @@ export class Player {
             return;
         }
 
-        switch(options.subType){
+        switch (options.subType) {
             case EquipmentType.NVG:
                 this._equipment = new NVGEquipment(this.context, this.assets, {
                     ...options,
@@ -244,6 +271,7 @@ export class Player {
     }
 
     public remove() {
+        this.logo?.destroy();
         this.tracker?.destroy();
         this.reload?.destroy();
         this._gun?.remove();
@@ -252,5 +280,7 @@ export class Player {
     }
 
     public reattach() {
+        this._gun?.reattach();
+        this._equipment?.reattach();
     }
 }

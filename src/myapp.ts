@@ -47,7 +47,10 @@ export interface AppOptions {
 }
 
 export class MenuApp extends Async {
-    private anchor: Actor;
+    private _anchor: Actor;
+    get anchor() {
+        return this._anchor;
+    }
 
     private attachPoint: string = 'spine-middle';
 
@@ -95,7 +98,7 @@ export class MenuApp extends Async {
 
     private async createMenus() {
         const local = translate(this.options.transform ? this.options.transform : {}).toJSON();
-        this.anchor = Actor.Create(this.context, {
+        this._anchor = Actor.Create(this.context, {
             actor: {
                 transform: { local }
             }
@@ -113,7 +116,7 @@ export class MenuApp extends Async {
             }, this.options.user);
 
             await this.mainMenu.created();
-            this.mainMenu.view.root.anchor.parentId = this.anchor.id;
+            this.mainMenu.view.root.anchor.parentId = this._anchor.id;
 
             if (this.options.attachment != false) {
                 this.reattachMenu(this.attachPoint, this.options.transform);
@@ -127,17 +130,17 @@ export class MenuApp extends Async {
                 exclusive: false,
             }, null);
             await this.mainMenu.created();
-            this.mainMenu.view.root.anchor.parentId = this.anchor.id;
+            this.mainMenu.view.root.anchor.parentId = this._anchor.id;
         }
     }
 
     private reattachMenu(attachPoint: string, transform?: Partial<ScaledTransformLike>) {
-        if (this.anchor.attachment && this.anchor.attachment.attachPoint) {
-            this.anchor.detach();
+        if (this._anchor.attachment && this._anchor.attachment.attachPoint) {
+            this._anchor.detach();
         }
-        this.anchor.attach(this.options.user, attachPoint as AttachPoint);
+        this._anchor.attach(this.options.user, attachPoint as AttachPoint);
         const local = translate(transform ? transform : ATTACHMENT_TRANSFORMS[attachPoint]);
-        this.anchor.transform.local.copy(local);
+        this._anchor.transform.local.copy(local);
 
         this.attachPoint = attachPoint;
     }
@@ -147,7 +150,7 @@ export class MenuApp extends Async {
     }
 
     public remove() {
-        this.anchor?.destroy();
+        this._anchor?.destroy();
         [...Object.keys(this.windows)].forEach(k => {
             this.windows[k].remove();
         });

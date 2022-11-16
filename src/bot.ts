@@ -56,12 +56,22 @@ const botAnimations: { [name: string]: BotAnimation } = {
         data: {
             tracks: [
                 {
-                    target: ActorPath("bot").transform.local.rotation,
+                    target: ActorPath("bot").transform.local.scale,
                     easing: AnimationEaseCurves.Linear,
-                    keyframes: [...Array(10 + 1).keys()].map(i => ({
-                        time: i * 1 / 10,
-                        value: Quaternion.FromEulerAngles((90 - i * 90) * DegreesToRadians / 10, (i * 3 * 360) * DegreesToRadians / 10, 0)
-                    }))
+                    // keyframes: [...Array(10 + 1).keys()].map(i => ({
+                    //     time: i * 1 / 10,
+                    //     value: Quaternion.FromEulerAngles((90 - i * 90) * DegreesToRadians / 10, (i * 3 * 360) * DegreesToRadians / 10, 0)
+                    // }))
+                    keyframes: [
+                        {
+                            time: 0,
+                            value: { x: 1, y: 1, z: 1 }
+                        },
+                        {
+                            time: 0.4,
+                            value: { x: 0.001, y: 0.001, z: 0.001 }
+                        }
+                    ]
                 }
             ]
         }
@@ -382,7 +392,7 @@ export class Bot extends Async {
             }
 
             const nextWayPointID = wayPointGraph.nextHop[currentWayPointID][targetWayPointID];
-            if (!nextWayPointID) {
+            if (nextWayPointID === undefined) {
                 return;
             }
             const nextWayPoint = wayPointGraph.nodes.get(nextWayPointID).wayPoint;
@@ -391,19 +401,19 @@ export class Bot extends Async {
             const b = nextWayPoint.anchor.transform.app.position.clone();
 
             this.waypoint = nextWayPoint;
-            await this.moveTo(nextWayPoint, a.subtract(b).length());
+            await this.moveTo(nextWayPoint, a.subtract(b).length(), 1);
         }
     }
 
-    public async moveTo(wayPoint?: WayPoint | Actor, dist?: number) {
-        const target = wayPoint instanceof WayPoint ? wayPoint.anchor :  wayPoint;
+    public async moveTo(wayPoint?: WayPoint | Actor, dist?: number, speed: number = 1) {
+        const target = wayPoint instanceof WayPoint ? wayPoint.anchor : wayPoint;
         await Animation.AnimateTo(this.context, this.anchor, {
             destination: {
                 transform: {
                     local: target.transform.app.toJSON(),
                 }
             },
-            duration: dist ? dist / 1.5 : 1,
+            duration: dist ? dist / speed : 1,
             easing: AnimationEaseCurves.Linear
         });
     }

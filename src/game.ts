@@ -199,7 +199,7 @@ export class SearchAndDestroyGame extends Game {
         const bot = new Bot(this.context, this.assets, {
             spawn: w,
             model: {
-                resourceId: 'artifact:2133418241777730301',
+                resourceId: 'artifact:2135579602205016539',
             },
             hp: 200,
             hitboxes: defaultBotHitBoxes
@@ -369,6 +369,7 @@ export class ZombieHordeGame extends Game {
 
     public stop() {
         super.stop();
+        if (this.interval) clearInterval(this.interval);
         this.target?.destroy();
         this._started = false;
     }

@@ -44,6 +44,8 @@ export class StartWindow extends Window {
     public onAction: (act: string, user: User, params?: any) => void;
     public getPlayer: () => Player;
 
+    private _first: boolean = true;
+
     private _from: { [name: string]: string };
     get from() {
         return this._from;
@@ -53,6 +55,7 @@ export class StartWindow extends Window {
         const fromText = side.find('#from')[0] as Text;
         if (!fromText) return;
         this._from = f;
+        this._first = this._from ? false : true;
         fromText.text(f ? `#${f.id}\n${f.name}` : '');
     }
 
@@ -65,6 +68,7 @@ export class StartWindow extends Window {
         const toText = side.find('#to')[0] as Text;
         if (!toText) return;
         this._to = t;
+        this._first = this._to ? true : (this._from ? false : true);
         toText.text(t ? `#${t.id}\n${t.name}` : '');
     }
 
@@ -323,6 +327,18 @@ export class StartWindow extends Window {
             this.from = undefined;
             this.to = undefined;
         });
+
+        // remove path
+        const pathRemoveButton = side.find('#path_remove')[0] as Button;
+        pathRemoveButton.addUIEventHandler('click', (params: { user: User, id: string }) => {
+            if (!this.from || !this.to) {
+                params.user.prompt('Select both the "from" and "to" waypoint');
+                return;
+            }
+            this.onAction('path_remove', params.user, { from: this.from, to: this.to });
+            this.from = undefined;
+            this.to = undefined;
+        });
     }
 
     private async toggleGameMenu() {
@@ -392,12 +408,13 @@ export class StartWindow extends Window {
         if (side.find('#editor').length <= 0) return;
         switch (action) {
             case 'select':
-                if (!this.from || this.from && this.to) {
-                    this.from = { id: params.id, name: params.options.name };
-                } else if (!this.to) {
-                    this.to = { id: params.id, name: params.options.name };
+                const point  = { id: params.id, name: params.options.name };
+                if (this._first) {
+                    this.from = point;
+                } else {
+                    this.to = point;
                 }
-                this.delete = { id: params.id, name: params.options.name };
+                this.delete = point;
                 break;
             case 'delete':
                 this.from = undefined;

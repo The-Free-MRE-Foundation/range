@@ -12,9 +12,25 @@ import { checkUserRole, fetchJSON } from "./utils";
 import { WayPointGraph } from "./waypoint";
 import { Game, SearchAndDestroyGame, TargetPracticeGame, WhackamoleGame, ZombieHordeGame } from "./game";
 import { EquipmentOptions } from "./equipment";
-import { ItemType } from "./item";
+import { RangeDB } from "./db";
 
 const MIN_SYNC_INTERVAL = 1;
+
+const MONGODB_HOST = process.env['MONGODB_HOST'];
+const MONGODB_PORT = process.env['MONGODB_PORT'];
+const MONGODB_USER = process.env['MONGODB_USER'];
+const MONGODB_PASSWORD = process.env['MONGODB_PASSWORD'];
+const MONGODB_CERT = process.env['MONGODB_CERT'];
+const DATABASE = process.env['DATABASE'];
+
+const mongoDBOptions = {
+    name: 'range',
+    host: MONGODB_HOST,
+    port: MONGODB_PORT,
+    user: MONGODB_USER,
+    password: MONGODB_PASSWORD,
+    database: DATABASE,
+}
 
 const DEFAULT_GUN_OPTIONS = [
     {
@@ -91,7 +107,7 @@ export default class App {
     get attachmentOptions() {
         return this.weaponsData.attachments;
     }
-    get equipmentOptions(){
+    get equipmentOptions() {
         return this.weaponsData.equipments;
     }
 
@@ -105,6 +121,10 @@ export default class App {
 
     // game
     private game: Game;
+
+    // db
+    private spaceId: string;
+    private rangeDB: RangeDB;
 
     constructor(private context: Context, params: ParameterSet, private baseUrl: string) {
         this.url = params['url'] ? params['url'] as string : 'https://freemre.com/range/guns.json';
@@ -124,6 +144,17 @@ export default class App {
         this.preload();
         this.weaponsData = this.url ? await fetchJSON(this.url) : DEFAULT_GUN_OPTIONS;
 
+        this.rangeDB = new RangeDB(mongoDBOptions);
+        await this.rangeDB.created();
+
+        this.initialized = true;
+
+        this.queue.forEach((x) => {
+            this.userjoined(x);
+        });
+    }
+
+    private async loadLevel() {
         this.graph = new WayPointGraph(this.context, this.assets, {
             node: {
                 name: 'default',
@@ -138,7 +169,7 @@ export default class App {
             }
         });
 
-        this.graph.addWayPointButtonBehavior((user, _, wayPoint) => {
+        this.graph.addWayPointHandler((user, _, wayPoint) => {
             const id = this.graph.wayPointIds.get(wayPoint);
             const options = wayPoint.options;
             const player = this.players.get(user.id);
@@ -146,14 +177,17 @@ export default class App {
             player.onEdit('select', { id, options });
         });
 
-        const data = await fetchJSON('https://freemre.com/range/test.json');
-        this.graph.import(data);
-
-        this.initialized = true;
-
-        this.queue.forEach((x) => {
-            this.userjoined(x);
+        this.graph.addWayPointGrabHandler(() => {
+            this.rangeDB.saveLevel(this.graph.toJSON(), this.spaceId, this.context.sessionId);
         });
+
+        // const data = await fetchJSON('https://freemre.com/range/test.json');
+
+        const level = await this.rangeDB.getLevel(this.spaceId, this.context.sessionId);
+        if (level) {
+            const data = level.data;
+            this.graph.import(data);
+        }
     }
 
     private async userjoined(user: User) {
@@ -164,6 +198,11 @@ export default class App {
         }
 
         if (this.initialized) {
+            if (!this.spaceId) {
+                this.spaceId = user.properties['altspacevr-space-id'];
+                this.loadLevel();
+            }
+
             if (this.players.has(user.id)) return;
             const player = new Player(this.context, this.assets, {
                 ...DEFAULT_PLAYER_OPTIONS,
@@ -179,16 +218,16 @@ export default class App {
                 if (!(checkUserRole(user, 'moderator') || checkUserRole(user, 'host')) && !['weapon', 'attachment'].includes(action)) return;
                 switch (action) {
                     case 'weapon':
-                            const gunOptions = this.gunOptions.find(o => o.name == params.name);
-                            if (gunOptions){
-                                player.equipGun(gunOptions);
-                                break;
-                            }
-                            const equipmentOptions = this.equipmentOptions.find(o => o.name == params.name);
-                            if (equipmentOptions){
-                                player.equipEquipment(equipmentOptions);
-                                break;
-                            }
+                        const gunOptions = this.gunOptions.find(o => o.name == params.name);
+                        if (gunOptions) {
+                            player.equipGun(gunOptions);
+                            break;
+                        }
+                        const equipmentOptions = this.equipmentOptions.find(o => o.name == params.name);
+                        if (equipmentOptions) {
+                            player.equipEquipment(equipmentOptions);
+                            break;
+                        }
                         break;
                     case 'attachment':
                         const attachmentOptions = this.attachmentOptions.find(o => o.name == params.name);
@@ -201,20 +240,22 @@ export default class App {
                         this.graph.edit = params.edit;
                         break;
                     case 'waypoint':
+                        const transform = { ...player.transform };
+                        transform.position.y -= 1.265409;
                         this.graph.addNode({
                             name: params.name,
                             resourceId: 'artifact:2133418241777730301',
                             dimensions: {
                                 width: 0.05, height: 0.05, depth: 0.05,
                             },
-                            transform: player.transform,
+                            transform,
                             edit: true,
                         });
                         break;
                     case 'path':
                         this.graph.addEdge(params.from.id, params.to.id, true);
                         break;
-                    case 'path_delete':
+                    case 'path_remove':
                         this.graph.removeEdge(params.from.id, params.to.id);
                         break;
                     case 'delete':
@@ -225,6 +266,10 @@ export default class App {
                         this.graph.edit = false;
                         this.startGame(params);
                         break;
+                }
+
+                if (['waypoint', 'delete', 'path', 'path_delete'].includes(action)) {
+                    this.rangeDB.saveLevel(this.graph.toJSON(), this.spaceId, this.context.sessionId);
                 }
             }
 
@@ -272,6 +317,7 @@ export default class App {
                 }
                 break;
             case 'zombie_horde':
+                this.graph.calcShortestPaths();
                 this.game = new ZombieHordeGame(this.context, this.assets, {
                     mode: params.mode,
                     graph: this.graph,
@@ -307,6 +353,7 @@ export default class App {
         const player = this.players.get(user.id);
         if (player) {
             player.remove();
+            this.players.delete(user.id);
         }
     }
 
