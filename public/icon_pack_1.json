@@ -90,11 +90,29 @@
 		}
     },
     {
+        "name": "Grab",
+        "resourceId": "artifact:2137230656831226271",
+		"dimensions": {
+			"width": 4,
+			"height": 4,
+			"depth": 0.004032
+		}
+    },
+    {
         "name": "Icon",
         "resourceId": "artifact:2132071569353081855",
 		"dimensions": {
 			"width": 2.45,
 			"height": 2.10,
+			"depth": 0.004032
+		}
+    },
+    {
+        "name": "Minimize",
+        "resourceId": "artifact:2137147409384342467",
+		"dimensions": {
+			"width": 4,
+			"height": 4,
 			"depth": 0.004032
 		}
     },
@@ -149,6 +167,15 @@
 		"dimensions": {
 			"width": 5.19,
 			"height": 5.19,
+			"depth": 0.004032
+		}
+    },
+    {
+        "name": "Question",
+        "resourceId": "artifact:2137164408026038680",
+		"dimensions": {
+			"width": 4,
+			"height": 4,
 			"depth": 0.004032
 		}
     },

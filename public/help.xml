@@ -1,0 +1,37 @@
+<row id='help' width= 120 height= 170 justifyContent='JUSTIFY_FLEX_START' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_COLUMN_REVERSE' style='asset: "Background"'>
+    <row width=120 height=20 margins=2 justifyContent='JUSTIFY_FLEX_START' alignItems='ALIGN_FLEX_START' flexDirection='FLEX_DIRECTION_COLUMN_REVERSE' style='asset: "Background4";'>
+        <Text width=3 height=5 options='{textHeight: 0.05, textAnchor: "middle-left"}' style='textFont: "monospace"; textColor: "#004DFF";'>Requirements:</Text>
+        <Text width=4 height=15 options='{textHeight: 0.04, textAnchor: "middle-left"}' style='textFont: "serif";'>⋅  You need to turn on your left cursor to play this game,
+to do so, go to settings, input, set left cursor always on</Text>
+    </row>
+    <row width=120 height=20 margins=2 justifyContent='JUSTIFY_FLEX_START' alignItems='ALIGN_FLEX_START' flexDirection='FLEX_DIRECTION_COLUMN_REVERSE' style='asset: "Background4";'>
+        <Text width=3 height=5 options='{textHeight: 0.05, textAnchor: "middle-left"}' style='textFont: "monospace"; textColor: "#004DFF";'>How to reload</Text>
+        <Text width=4 height=15 options='{textHeight: 0.04, textAnchor: "middle-left"}' style='textFont: "serif";'>⋅  Click the magazine with your left cursor to drop the mag
+then insert the new mag spawned on your left hand</Text>
+    </row>
+    <row width=120 height=20 margins=2 justifyContent='JUSTIFY_FLEX_START' alignItems='ALIGN_FLEX_START' flexDirection='FLEX_DIRECTION_COLUMN_REVERSE' style='asset: "Background4";'>
+        <Text width=3 height=5 options='{textHeight: 0.05, textAnchor: "middle-left"}' style='textFont: "monospace"; textColor: "#004DFF";'>How to customize your weapon</Text>
+        <Text width=4 height=15 options='{textHeight: 0.04, textAnchor: "middle-left"}' style='textFont: "serif";'>⋅  Click "customize" to open the  customization window
+where you can choose attachments, custom skin etc.</Text>
+    </row>
+    <row width=120 height=20 margins=2 justifyContent='JUSTIFY_FLEX_START' alignItems='ALIGN_FLEX_START' flexDirection='FLEX_DIRECTION_COLUMN_REVERSE' style='asset: "Background4";'>
+        <Text width=3 height=5 options='{textHeight: 0.05, textAnchor: "middle-left"}' style='textFont: "monospace"; textColor: "#004DFF";'>How to close/grab the menu</Text>
+        <Text width=4 height=15 options='{textHeight: 0.04, textAnchor: "middle-left"}' style='textFont: "serif";'>⋅  Click the "-" or "X" button, clicking on the "X" will
+also detach the round logo. Click the hand to toggle grabbable</Text>
+    </row>
+    <row width=120 height=50 margins=2 justifyContent='JUSTIFY_FLEX_START' alignItems='ALIGN_FLEX_START' flexDirection='FLEX_DIRECTION_COLUMN_REVERSE' style='asset: "Background4";'>
+        <Text width=3 height=5 options='{textHeight: 0.05, textAnchor: "middle-left"}' style='textFont: "monospace"; textColor: "#004DFF";'>Game Control (mod/host only)</Text>
+        <Text width=4 height=8 options='{textHeight: 0.04, textAnchor: "middle-left"}' style='textFont: "serif";'>⋅  There are 4 game modes available:</Text>
+        <Text width=12 height=6 options='{textHeight: 0.03, textAnchor: "middle-left"}' style='textFont: "serif";'>⋅  Target Practice: infinitely respawning targets for practicing</Text>
+        <Text width=12 height=10 options='{textHeight: 0.03, textAnchor: "middle-left"}' style='textFont: "serif";'>⋅  Whackamole: targets are randomly spawned one by one and escapes
+after a short time</Text>
+        <Text width=12 height=10 options='{textHeight: 0.03, textAnchor: "middle-left"}' style='textFont: "serif";'>⋅  Search and Destroy: targets are hidden throughout the world
+the object is to find and destroy them all</Text>
+        <Text width=12 height=10 options='{textHeight: 0.03, textAnchor: "middle-left"}' style='textFont: "serif";'>⋅  Zombie Horde: zombies are coming for your brains,
+shoot them before they get near</Text>
+    </row>
+    <row width=120 height=20 margins=2 justifyContent='JUSTIFY_FLEX_START' alignItems='ALIGN_FLEX_START' flexDirection='FLEX_DIRECTION_COLUMN_REVERSE' style='asset: "Background4";'>
+        <Text width=3 height=5 options='{textHeight: 0.05, textAnchor: "middle-left"}' style='textFont: "monospace"; textColor: "#004DFF";'>Credits</Text>
+        <Text width=4 height=15 options='{textHeight: 0.04, textAnchor: "middle-left"}' style='textFont: "serif";'>⋅  MRE by the Free MRE Foundation (https://freemre.com)</Text>
+    </row>
+</row>

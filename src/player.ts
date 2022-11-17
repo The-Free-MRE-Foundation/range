@@ -1,4 +1,4 @@
-import { Actor, AssetContainer, ButtonBehavior, ColliderType, CollisionLayer, Context, RigidBodyConstraints, ScaledTransformLike, User } from "@microsoft/mixed-reality-extension-sdk";
+import { Actor, AssetContainer, AttachPoint, ButtonBehavior, ColliderType, CollisionLayer, Context, RigidBodyConstraints, ScaledTransformLike, User } from "@microsoft/mixed-reality-extension-sdk";
 import { AssetData } from "altvr-gui";
 import { Equipment, EquipmentOptions, EquipmentType, NVGEquipment, NVGEquipmentOptions } from "./equipment";
 import { Gun, GunOptions, GUN_COMMONS } from "./gun";
@@ -37,11 +37,15 @@ export class Player {
         return this.tracker.transform.app.toJSON();
     }
 
+    get user() {
+        return this.options.user;
+    }
+
     public onAction: (action: string, user: User, params: any) => void;
 
     constructor(private context: Context, private assets: AssetContainer, private options: PlayerOptions, private uiassets: { [name: string]: AssetData }, private baseurl: string) {
         this.init();
-        this.debug();
+        this.createLogo(false);
     }
 
     private async init() {
@@ -63,7 +67,7 @@ export class Player {
         this.gunApp.anchor.transform.local.copy(
             {
                 position: {
-                    x: -0.5, y: 0, z: 1.2
+                    x: -0.7, y: 0, z: 1.2
                 },
                 scale: {
                     x: 0.72, y: 0.72, z: 0.72
@@ -85,11 +89,24 @@ export class Player {
             attachment_url: "attachment.xml",
             editor_url: "editor.xml",
             game_url: "game.xml",
+            help_url: "help.xml",
             weapons_data: this.options.weapons_data,
         });
         await startWindow.created();
         startWindow.onAction = (action: string, user: User, params?: any) => {
-            this.onAction(action, user, params);
+            switch (action) {
+                case 'close':
+                    this.gunApp.window = '';
+                    this.logo.destroy();
+                    this.createLogo(false);
+                    break;
+                case 'minimize':
+                    this.gunApp.window = '';
+                    break;
+                default:
+                    this.onAction(action, user, params);
+                    break;
+            }
         };
         startWindow.getPlayer = () => {
             return this;
@@ -98,42 +115,59 @@ export class Player {
         this.gunApp.installWindow("start", startWindow);
     }
 
-    private async debug() {
+    private async createLogo(attach: boolean = true) {
+        let mesh = this.assets.meshes.find(m => m.name == "icon_mesh");
+        if (!mesh) {
+            mesh = this.assets.createSphereMesh("icon_mesh", 0.03);
+        }
         this.logo = Actor.CreateFromLibrary(this.context, {
             resourceId: 'artifact:2136479123109839116',
             actor: {
-                transform: {
-                    local: {
-                        position: {
-                            x: -0.1,
-                            y: 0,
-                            z: 0
-                        },
-                        scale: {
-                            x: 4,
-                            y: 4,
-                            z: 4,
-                        }
-                    }
-                },
+                grabbable: false,
                 appearance: {
-                    meshId: this.assets.createSphereMesh("debug_mesh", 0.03).id,
+                    meshId: mesh.id,
                     materialId: this.assets.materials.find((m) => m.name == "invis").id,
                 },
                 collider: {
                     geometry: { shape: ColliderType.Box },
                     layer: CollisionLayer.Hologram,
                 },
-                grabbable: false,
                 exclusiveToUser: this.options.user.id,
             },
         });
 
         this.logo.setBehavior(ButtonBehavior).onClick(async (user, _) => {
+            // this.gunApp.window = '';
+            // this.installStartWindow();
+            // this.gunApp.window = 'start';
+            // return;
+            if (!this.logo.attachment) {
+                this.attachLogo();
+            }
+
             if (this.gunApp.window == 'start') {
                 this.gunApp.window = '';
             } else {
                 this.gunApp.window = 'start';
+            }
+        });
+
+        if (attach) {
+            this.attachLogo();
+        }
+    }
+
+    private attachLogo() {
+        this.logo.attach(this.options.user.id, 'spine-middle');
+        this.logo.transform.local.copy({
+            position: {
+                x: 0.7, y: -0.5, z: 1
+            },
+            rotation: {
+                x: 40, y: -30, z: 0
+            },
+            scale: {
+                x: 2, y: 2, z: 2
             }
         });
     }

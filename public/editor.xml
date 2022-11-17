@@ -19,7 +19,7 @@ a new target will spawn</Text>
                 <Text id='delete_text' width= 45 height= 20 options='{textHeight: 0.03, textAnchor: "middle-center"}' style='asset: "Enemy Cell"'></Text>
             </col>
             <col width= 30 height= 20 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_ROW'>
-                <Button id='delete' width= 10 height= 10 options='{textHeight: 0.05, textAnchor: "middle-center"}' style='asset: "Add"'></Button>
+                <Button id='delete' width= 10 height= 10 options='{textHeight: 0.05, textAnchor: "middle-center"}' style='asset: "Remove"'></Button>
             </col>
         </row>
     </row>

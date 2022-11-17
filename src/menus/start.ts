@@ -3,7 +3,7 @@ import { Button, Checkbox, Grid, Pager, PaginatedGrid, Slider, Text } from "altv
 import { WeaponsData } from "../app";
 import { ItemType } from "../item";
 import { Player } from "../player";
-import { fetchText } from "../utils";
+import { checkUserRole, fetchText } from "../utils";
 import { Window, WindowOptions } from "../window";
 
 const CATEGORIES = ['Pistols', 'Heavy', 'SMGs', 'Rifles', 'Gear', 'Grenades'];
@@ -22,6 +22,7 @@ export interface StartWindowOptions extends WindowOptions {
     attachment_url: string,
     editor_url: string,
     game_url: string,
+    help_url: string,
 }
 
 export class StartWindow extends Window {
@@ -40,6 +41,8 @@ export class StartWindow extends Window {
     private enemyList: PaginatedGrid;
 
     private gameXML: string;
+
+    private helpXML: string;
 
     public onAction: (act: string, user: User, params?: any) => void;
     public getPlayer: () => Player;
@@ -92,6 +95,15 @@ export class StartWindow extends Window {
         if (this._category == c) return;
         this._category = c;
         this.updateWeapons();
+    }
+
+    private _grabbable: boolean = false;
+    get grabbable(){
+        return this._grabbable;
+    }
+    set grabbable(g: boolean){
+        this._grabbable = g;
+        this.menuView.anchor.grabbable = this._grabbable;
     }
 
     constructor(context: Context, options: StartWindowOptions) {
@@ -165,11 +177,16 @@ export class StartWindow extends Window {
             this.attachmentXML = await fetchText(url);
         }
 
+        const user = this.getPlayer().user;
         // editor
         const editorButton = this.menu.view.root.find('#editor_btn')[0] as Button;
-        editorButton.addUIEventHandler('click', (params: { user: User, id: string }) => {
-            this.toggleEditorMenu(params.user);
-        });
+        if (!(checkUserRole(user, 'moderator') || checkUserRole(user, 'host'))) {
+            editorButton.remove();
+        } else {
+            editorButton.addUIEventHandler('click', (params: { user: User, id: string }) => {
+                this.toggleEditorMenu(params.user);
+            });
+        }
 
         if (!this.editorXML) {
             let url = (this.options as StartWindowOptions).editor_url;
@@ -179,15 +196,49 @@ export class StartWindow extends Window {
 
         // game
         const gameButton = this.menu.view.root.find('#game_btn')[0] as Button;
-        gameButton.addUIEventHandler('click', (params: { user: User, id: string }) => {
-            this.toggleGameMenu();
-        });
+        if (!(checkUserRole(user, 'moderator') || checkUserRole(user, 'host'))) {
+            gameButton.remove();
+        } else {
+            gameButton.addUIEventHandler('click', (params: { user: User, id: string }) => {
+                this.toggleGameMenu();
+            });
+        }
 
         if (!this.gameXML) {
             let url = (this.options as StartWindowOptions).game_url;
             url = url.split('://').length > 1 ? url : `${this.options.baseurl}/${url}`;
             this.gameXML = await fetchText(url);
         }
+
+        // close
+        const closeButton = this.menu.view.root.find('#close_btn')[0] as Button;
+        closeButton.addUIEventHandler('click', (params: { user: User, id: string }) => {
+            this.onAction('close', params.user, {});
+        });
+
+        // minimize
+        const minimizeButton = this.menu.view.root.find('#minimize_btn')[0] as Button;
+        minimizeButton.addUIEventHandler('click', (params: { user: User, id: string }) => {
+            this.onAction('minimize', params.user, {});
+        });
+
+        // question
+        const questionButton = this.menu.view.root.find('#question_btn')[0] as Button;
+        questionButton.addUIEventHandler('click', (params: { user: User, id: string }) => {
+            this.toggleHelpMenu();
+        });
+
+        if (!this.helpXML) {
+            let url = (this.options as StartWindowOptions).help_url;
+            url = url.split('://').length > 1 ? url : `${this.options.baseurl}/${url}`;
+            this.helpXML = await fetchText(url);
+        }
+
+        // grab
+        const grabButton = this.menu.view.root.find('#grab_btn')[0] as Button;
+        grabButton.addUIEventHandler('click', (params: { user: User, id: string }) => {
+            this.toggleGrabbable();
+        });
     }
 
     private updateCategories() {
@@ -365,9 +416,11 @@ export class StartWindow extends Window {
         const whackamoleStartButton = side.find('#whackamole_start')[0] as Button;
         whackamoleStartButton.addUIEventHandler('click', (params: { user: User, id: string }) => {
             const movingCheckbox = side.find('#moving_checkbox')[0] as Checkbox;
-            this.onAction('start', params.user, { mode: 'whackamole', settings: {
-                moving: movingCheckbox.checked,
-            } });
+            this.onAction('start', params.user, {
+                mode: 'whackamole', settings: {
+                    moving: movingCheckbox.checked,
+                }
+            });
             this.refreshStartButton('whackamole_start');
         });
 
@@ -382,6 +435,21 @@ export class StartWindow extends Window {
             this.onAction('start', params.user, { mode: 'zombie_horde', settings: {} });
             this.refreshStartButton('zombie_horde_start');
         });
+    }
+
+    private toggleHelpMenu() {
+        const side = this.menu.view.root.find('#side')[0];
+
+        const opened = side.find('#help').length > 0;
+        this.clear();
+        if (opened) {
+            return;
+        }
+        side.append(this.helpXML);
+    }
+
+    private toggleGrabbable() {
+        this.grabbable = !this.grabbable;
     }
 
     private refreshStartButton(id: string) {
@@ -408,7 +476,7 @@ export class StartWindow extends Window {
         if (side.find('#editor').length <= 0) return;
         switch (action) {
             case 'select':
-                const point  = { id: params.id, name: params.options.name };
+                const point = { id: params.id, name: params.options.name };
                 if (this._first) {
                     this.from = point;
                 } else {

@@ -30,4 +30,8 @@
         </col>
     </col>
     <col id='side' width= 120 height= 170 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_COLUMN_REVERSE'></col>
+    <Button id='grab_btn' positionType='POSITION_TYPE_ABSOLUTE' x=255 y=0 margins= 2 width= 10 height= 10 style='asset: "Grab";'></Button>
+    <Button id='question_btn' positionType='POSITION_TYPE_ABSOLUTE' x=270 y=0 margins= 2 width= 10 height= 10 style='asset: "Question";'></Button>
+    <Button id='minimize_btn' positionType='POSITION_TYPE_ABSOLUTE' x=285 y=0 margins= 2 width= 10 height= 10 style='asset: "Minimize";'></Button>
+    <Button id='close_btn' positionType='POSITION_TYPE_ABSOLUTE' x=300 y=0 margins= 2 width= 10 height= 10 style='asset: "Remove";'></Button>
 </row>

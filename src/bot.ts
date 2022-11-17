@@ -99,7 +99,7 @@ export const defaultBotHitBoxes: HitBoxOptions[] = [
             },
             shape: HitBoxShape.SPHERE,
         },
-        damage: 100
+        damage: 200
     },
     {
         attachPoint: 'chest-center',
