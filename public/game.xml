@@ -10,7 +10,7 @@
     <row width= 120 height= 150 justifyContent='JUSTIFY_FLEX_START' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_COLUMN_REVERSE'>
         <row width= 120 height= 25 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_ROW'>
             <col width= 60 height= 20 justifyContent='JUSTIFY_FLEX_START' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_ROW'>
-                <Button class='start' id='target_practice_start' margins= 4 width= 6 height= 6 style='asset: "Play"'></Button>
+                <Button class='start' id='target_practice_start' margins= 4 width= 6 height= 6 style='asset: "Play"' options='{depth: 2}'></Button>
                 <Text width= 40 height= 15 options='{textHeight: 0.05, textAnchor: "middle-center"}' style='asset: "Attachment Cell"'>Target Practice</Text>
             </col>
             <col width= 50 height= 20 justifyContent='JUSTIFY_FLEX_END' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_ROW'>
@@ -22,7 +22,7 @@
         </row>
         <row width= 120 height= 25 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_ROW'>
             <col width= 60 height= 20 justifyContent='JUSTIFY_FLEX_START' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_ROW'>
-                <Button class='start' id='whackamole_start' margins= 4 width= 6 height= 6 style='asset: "Play"'></Button>
+                <Button class='start' id='whackamole_start' margins= 4 width= 6 height= 6 style='asset: "Play"' options='{depth: 2}'></Button>
                 <Text width= 40 height= 15 options='{textHeight: 0.05, textAnchor: "middle-center"}' style='asset: "Attachment Cell"'>Whackamole</Text>
             </col>
             <col width= 50 height= 20 justifyContent='JUSTIFY_FLEX_END' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_ROW'>
@@ -33,9 +33,9 @@
                 <col width= 20 height= 15 marginRight= 5 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_COLUMN_REVERSE'>
                     <Text width= 5 height= 5 options='{textHeight: 0.025, textAnchor: "middle-center"}'>timer</Text>
                     <Number id='whackamole_timer' height= 7 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_ROW' style='asset: "Enemy Cell";'>
-                        <Button id='num' width= 7 height= 7 margins= 2 options='{textHeight: 0.04, textAnchor: "middle-center"}' style='textFont: "monospace";'>69</Button>
-                        <Button id='dec' width= 4 height= 4 margins= 1 style='asset: "Minus";'></Button>
-                        <Button id='inc' width= 4 height= 4 margins= 1 style='asset: "Plus";'></Button>
+                        <Button id='num' width= 7 height= 7 margins= 2 options='{textHeight: 0.04, textAnchor: "middle-center"}' style='textFont: "monospace";' options='{depth: 2}'>69</Button>
+                        <Button id='dec' width= 4 height= 4 margins= 1 style='asset: "Minus";'>options='{depth: 2}'</Button>
+                        <Button id='inc' width= 4 height= 4 margins= 1 style='asset: "Plus";'>options='{depth: 2}'</Button>
                     </Number>
                 </col>
             </col>

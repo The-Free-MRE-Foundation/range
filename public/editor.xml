@@ -7,7 +7,7 @@
 a new target will spawn</Text>
             </col>
             <col width= 30 height= 20 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_ROW'>
-                <Button id='waypoint' width= 10 height= 10 options='{textHeight: 0.05, textAnchor: "middle-center"}' style='asset: "Add"'></Button>
+                <Button id='waypoint' width= 10 height= 10 options='{depth: 2, textHeight: 0.05, textAnchor: "middle-center"}' style='asset: "Add"'></Button>
             </col>
         </row>
         <Grid id='enemy_grid' width= 120 height= 50 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_FLEX_CENTER' flexDirection='FLEX_DIRECTION_COLUMN_REVERSE' options='{row:3, col:2, width:42, height:14, margins: 2, defaultAsset: "Enemy Cell", highlightAsset: "Enemy Cell Active", template_url: "enemy_cell.xml"}'></Grid>
@@ -19,7 +19,7 @@ a new target will spawn</Text>
                 <Text id='delete_text' width= 45 height= 20 options='{textHeight: 0.03, textAnchor: "middle-center"}' style='asset: "Enemy Cell"'></Text>
             </col>
             <col width= 30 height= 20 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_ROW'>
-                <Button id='delete' width= 10 height= 10 options='{textHeight: 0.05, textAnchor: "middle-center"}' style='asset: "Remove"'></Button>
+                <Button id='delete' width= 10 height= 10 options='{depth: 2, textHeight: 0.05, textAnchor: "middle-center"}' style='asset: "Remove"'></Button>
             </col>
         </row>
     </row>
@@ -34,19 +34,19 @@ click x to remove
 </Text>
             </col>
             <col width= 40 height= 20 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_ROW'>
-                <Button id='path' width= 7 height= 7 margins= 3 options='{textHeight: 0.05, textAnchor: "middle-center"}' style='asset: "Add"'></Button>
-                <Button id='path_remove' width= 7 height= 7 margins= 3 options='{textHeight: 0.05, textAnchor: "middle-center"}' style='asset: "Remove"'></Button>
+                <Button id='path' width= 7 height= 7 margins= 3 options='{depth: 2, textHeight: 0.05, textAnchor: "middle-center"}' style='asset: "Add"'></Button>
+                <Button id='path_remove' width= 7 height= 7 margins= 3 options='{depth: 2, textHeight: 0.05, textAnchor: "middle-center"}' style='asset: "Remove"'></Button>
             </col>
         </row>
         <row width= 120 height= 50 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_ROW'>
             <col width= 30 height= 30 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_COLUMN_REVERSE'>
                 <Text positionType='POSITION_TYPE_ABSOLUTE' x= 13 y= -5 width= 5 height= 10 options='{textHeight: 0.05, textAnchor: "middle-center"}'>From</Text>
-                <Button id='from' width= 30 height= 30 options='{textHeight: 0.04, textAnchor: "middle-center", textJustify: "center"}' style='asset: "Square Cell"'></Button>
+                <Button id='from' width= 30 height= 30 options='{depth: 2, textHeight: 0.04, textAnchor: "middle-center", textJustify: "center"}' style='asset: "Square Cell"'></Button>
             </col>
             <Text margins= 5 width= 20 height= 8 style='asset: "Arrow"'></Text>
             <col width= 30 height= 30 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_COLUMN_REVERSE'>
                 <Text positionType='POSITION_TYPE_ABSOLUTE' x= 13 y= -5 width= 5 height= 10 options='{textHeight: 0.05, textAnchor: "middle-center"}'>To</Text>
-                <Button id='to' width= 30 height= 30 options='{textHeight: 0.04, textAnchor: "middle-center", textJustify: "center"}' style='asset: "Square Cell"'></Button>
+                <Button id='to' width= 30 height= 30 options='{depth: 2, textHeight: 0.04, textAnchor: "middle-center", textJustify: "center"}' style='asset: "Square Cell"'></Button>
             </col>
         </row>
     </row>

@@ -2,12 +2,12 @@
     <col width= 300 height= 170 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_ROW' style='asset: "Background";'>
         <col width= 130 height= 170 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_COLUMN_REVERSE'>
             <row width= 130 height= 36 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_ROW'>
-                <Button id="profile" margins= 3 width= 26 height= 26 style='asset: "Profile";'></Button>
+                <Button id="profile" margins= 3 width= 26 height= 26 style='asset: "Profile";' options='{depth: 2}'></Button>
                 <row width= 60 height= 10 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_COLUMN_REVERSE'>
                     <Text width= 5 height= 5 options='{textHeight: 0.04, textAnchor: "middle-center"}'>4140/6900</Text>
                     <Slider margins= 5 id="exp_slider" width= 60 height= 4 style='asset: "Slider";' options='{disabled: true, animate: false, mask: {asset: "Slider Mask", underlay: "Slider Red"}}'></Slider>
                 </row>
-                <Button margins= 5 width= 10 height= 10 style='asset: "Icon";'></Button>
+                <Button margins= 5 width= 10 height= 10 style='asset: "Icon";' options='{depth: 2}'></Button>
             </row>
             <row marginBottom= 10 width= 130 height= 114 justifyContent='JUSTIFY_FLEX_START' alignItems='ALIGN_FLEX_END' flexDirection='FLEX_DIRECTION_ROW'>
                 <Grid id='categories_grid' width= 130 height= 96 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_FLEX_CENTER' flexDirection='FLEX_DIRECTION_COLUMN_REVERSE' options='{row:6, col:1, width:77, height:16, margins: 2, template_url: "category_cell.xml"}'></Grid>
@@ -23,15 +23,15 @@
                 </Pager>
             </row>
             <row marginTop= -10 width= 153 height= 30 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_ROW'>
-                <Button id='editor_btn' margins= 5 width= 40 height= 13 options='{textHeight: 0.05, textAnchor: "middle-center"}' style='asset: "Action";'>Editor</Button>
-                <Button id='attachment_btn' margins= 5 width= 40 height= 13 options='{textHeight: 0.05, textAnchor: "middle-center"}' style='asset: "Action";'>Costumize</Button>
-                <Button id='game_btn' margins= 5 width= 40 height= 13 options='{textHeight: 0.05, textAnchor: "middle-center"}' style='asset: "Action";'>Game</Button>
+                <Button id='editor_btn' margins= 5 width= 40 height= 13 options='{textHeight: 0.05, textAnchor: "middle-center"}' style='asset: "Action";' options='{depth: 2}'>Editor</Button>
+                <Button id='attachment_btn' margins= 5 width= 40 height= 13 options='{textHeight: 0.05, textAnchor: "middle-center"}' style='asset: "Action";' options='{depth: 2}'>Costumize</Button>
+                <Button id='game_btn' margins= 5 width= 40 height= 13 options='{textHeight: 0.05, textAnchor: "middle-center"}' style='asset: "Action";' options='{depth: 2}'>Game</Button>
             </row>
         </col>
     </col>
     <col id='side' width= 120 height= 170 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_COLUMN_REVERSE'></col>
-    <Button id='grab_btn' positionType='POSITION_TYPE_ABSOLUTE' x=255 y=0 margins= 2 width= 10 height= 10 style='asset: "Grab";'></Button>
-    <Button id='question_btn' positionType='POSITION_TYPE_ABSOLUTE' x=270 y=0 margins= 2 width= 10 height= 10 style='asset: "Question";'></Button>
-    <Button id='minimize_btn' positionType='POSITION_TYPE_ABSOLUTE' x=285 y=0 margins= 2 width= 10 height= 10 style='asset: "Minimize";'></Button>
-    <Button id='close_btn' positionType='POSITION_TYPE_ABSOLUTE' x=300 y=0 margins= 2 width= 10 height= 10 style='asset: "Remove";'></Button>
+    <Button id='grab_btn' positionType='POSITION_TYPE_ABSOLUTE' x=255 y=0 margins= 2 width= 10 height= 10 style='asset: "Grab";' options='{depth: 2}'></Button>
+    <Button id='question_btn' positionType='POSITION_TYPE_ABSOLUTE' x=270 y=0 margins= 2 width= 10 height= 10 style='asset: "Question";' options='{depth: 2}'></Button>
+    <Button id='minimize_btn' positionType='POSITION_TYPE_ABSOLUTE' x=285 y=0 margins= 2 width= 10 height= 10 style='asset: "Minimize";' options='{depth: 2}'></Button>
+    <Button id='close_btn' positionType='POSITION_TYPE_ABSOLUTE' x=300 y=0 margins= 2 width= 10 height= 10 style='asset: "Remove";' options='{depth: 2}'></Button>
 </row>
