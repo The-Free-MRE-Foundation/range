@@ -1,4 +1,4 @@
-import { Actor, ActorPath, Animation, AnimationData, AnimationDataLike, AnimationEaseCurves, AnimationWrapMode, AssetContainer, Context, DegreesToRadians, Quaternion, ScaledTransformLike } from "@microsoft/mixed-reality-extension-sdk";
+import { Actor, ActorPath, Animation, AnimationData, AnimationDataLike, AnimationEaseCurves, AnimationWrapMode, AssetContainer, Context, DegreesToRadians, GroupMask, Quaternion, ScaledTransformLike } from "@microsoft/mixed-reality-extension-sdk";
 import { HitBox, HitBoxOptions, HitBoxShape } from "./hitbox";
 import { Async, translate } from "./utils";
 import { WayPoint, WayPointGraph } from "./waypoint";
@@ -216,6 +216,7 @@ export const defaultBotHitBoxes: HitBoxOptions[] = [
 export interface BotOptions {
     spawn: WayPoint,
     model: {
+        hidden?: string,
         resourceId: string,
         transform?: Partial<ScaledTransformLike>,
     },
@@ -227,6 +228,7 @@ export interface BotOptions {
 export class Bot extends Async {
     private anchor: Actor;
     private model: Actor;
+    private hidden: Actor;
     private hitboxes: HitBox[];
 
     // logic
@@ -301,6 +303,23 @@ export class Bot extends Async {
             resourceId: this.options.model.resourceId,
             actor: {
                 parentId: this.anchor.id,
+                appearance: { 
+                    enabled: this.options.model.hidden ? new GroupMask(this.context, ['default']) : true,
+                },
+                transform: {
+                    local
+                }
+            }
+        });
+
+        if (!this.options.model.hidden) return;
+        this.hidden = Actor.CreateFromLibrary(this.context, {
+            resourceId: this.options.model.hidden,
+            actor: {
+                parentId: this.anchor.id,
+                appearance: { 
+                    enabled: new GroupMask(this.context, ['hidden']),
+                },
                 transform: {
                     local
                 }
@@ -318,6 +337,12 @@ export class Bot extends Async {
             isPlaying: true,
             wrapMode: AnimationWrapMode.Once
         });
+        if (this.hidden) {
+            animData.bind({ bot: this.hidden }, {
+                isPlaying: true,
+                wrapMode: AnimationWrapMode.Once
+            });
+        }
         await new Promise(r => setTimeout(r, botAnimations[name].duration * 1000));
     }
 

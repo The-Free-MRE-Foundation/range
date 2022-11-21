@@ -13,7 +13,7 @@ export interface PlayerOptions {
     reload: {
         dimensions: { width: number, height: number, depth: number }
         transform?: Partial<ScaledTransformLike>,
-    }
+    },
 }
 
 export class Player {
@@ -41,6 +41,21 @@ export class Player {
         return this.options.user;
     }
 
+    private _hidden: boolean = false;
+    get hidden() {
+        return this._hidden;
+    }
+    set hidden(h: boolean) {
+        this._hidden = h;
+        if (!this._hidden) {
+            this.options.user.groups.delete('hidden');
+            this.options.user.groups.add('default');
+        } else {
+            this.options.user.groups.delete('default');
+            this.options.user.groups.add('hidden');
+        }
+    }
+
     public onAction: (action: string, user: User, params: any) => void;
 
     constructor(private context: Context, private assets: AssetContainer, private options: PlayerOptions, private uiassets: { [name: string]: AssetData }, private baseurl: string) {
@@ -49,6 +64,8 @@ export class Player {
     }
 
     private async init() {
+        this.hidden = false;
+
         this.createTracker();
         this.createReload();
 
@@ -305,6 +322,8 @@ export class Player {
     }
 
     public remove() {
+        this.options.user.groups.delete('hidden');
+        this.options.user.groups.delete('default');
         this.logo?.destroy();
         this.tracker?.destroy();
         this.reload?.destroy();

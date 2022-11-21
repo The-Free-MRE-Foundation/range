@@ -24,7 +24,7 @@
             </row>
             <row marginTop= -10 width= 153 height= 30 justifyContent='JUSTIFY_CENTER' alignItems='ALIGN_CENTER' flexDirection='FLEX_DIRECTION_ROW'>
                 <Button id='editor_btn' margins= 5 width= 40 height= 13 options='{textHeight: 0.05, textAnchor: "middle-center"}' style='asset: "Action";' options='{depth: 2}'>Editor</Button>
-                <Button id='attachment_btn' margins= 5 width= 40 height= 13 options='{textHeight: 0.05, textAnchor: "middle-center"}' style='asset: "Action";' options='{depth: 2}'>Costumize</Button>
+                <Button id='attachment_btn' margins= 5 width= 40 height= 13 options='{textHeight: 0.05, textAnchor: "middle-center"}' style='asset: "Action";' options='{depth: 2}'>Customize</Button>
                 <Button id='game_btn' margins= 5 width= 40 height= 13 options='{textHeight: 0.05, textAnchor: "middle-center"}' style='asset: "Action";' options='{depth: 2}'>Game</Button>
             </row>
         </col>

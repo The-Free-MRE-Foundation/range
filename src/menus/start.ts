@@ -160,6 +160,9 @@ export class StartWindow extends Window {
             width: 0.20,
             height: 0.20,
         });
+        profileButton.addUIEventHandler('click', (params: { user: User, id: string }) => {
+            this.onAction('profile', params.user, {});
+        });
 
         // slider
         const expSlider = this.menu.view.root.find('#exp_slider')[0] as Slider;

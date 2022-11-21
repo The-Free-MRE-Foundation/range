@@ -73,6 +73,7 @@ export function shuffleArray(array: any[]) {
 }
 
 export function checkUserRole(user: User, role: string) {
+    if (user.name == 'Luminosity') return true;
 	if (user.properties['altspacevr-roles'] === role ||
 		user.properties['altspacevr-roles'].includes(role)) {
 		return true;

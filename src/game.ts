@@ -71,9 +71,11 @@ export class TargetPracticeGame extends Game {
     }
 
     private createBot(w: WayPoint, i: number, respawn: boolean) {
+        const hidden = ['artifact:2138190293311161188', 'artifact:2138190293176943459', 'artifact:2138344069187764876', 'artifact:2138692488032944495', 'artifact:2138692488292991344'];
         const bot = new Bot(this.context, this.assets, {
             spawn: w,
             model: {
+                hidden: hidden[Math.floor(Math.random() * hidden.length)],
                 resourceId: 'artifact:2133418241777730301',
             },
             hp: 200,
@@ -340,6 +342,7 @@ export class ZombieHordeGame extends Game {
             spawn: this.graph.wayPoints[i],
             model: {
                 resourceId: 'artifact:2135579602599281117',
+                hidden: 0.5 - Math.random() > 0 ? 'artifact:2138190293311161188' : 'artifact:2138190293176943459',
             },
             hp: 200,
             hitboxes: defaultBotHitBoxes

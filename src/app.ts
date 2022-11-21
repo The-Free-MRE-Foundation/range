@@ -23,6 +23,8 @@ const MONGODB_PASSWORD = process.env['MONGODB_PASSWORD'];
 const MONGODB_CERT = process.env['MONGODB_CERT'];
 const DATABASE = process.env['DATABASE'];
 
+const PASSWORD = process.env['PASSWORD'];
+
 const mongoDBOptions = {
     name: 'range',
     host: MONGODB_HOST,
@@ -215,7 +217,7 @@ export default class App {
             }, this.uiassets, this.baseUrl);
 
             player.onAction = (action: string, user: User, params: any) => {
-                if (!(checkUserRole(user, 'moderator') || checkUserRole(user, 'host')) && !['weapon', 'attachment'].includes(action)) return;
+                if (!(checkUserRole(user, 'moderator') || checkUserRole(user, 'host')) && !['profile', 'weapon', 'attachment'].includes(action)) return;
                 switch (action) {
                     case 'weapon':
                         const gunOptions = this.gunOptions.find(o => o.name == params.name);
@@ -265,6 +267,18 @@ export default class App {
                     case 'start':
                         this.graph.edit = false;
                         this.startGame(params);
+                        break;
+                    case 'profile':
+                        console.log(Array.from(user.groups));
+                        user.prompt("Password", true).then((dialog) => {
+                            if (dialog.submitted) {
+                                if (PASSWORD && dialog.text == PASSWORD) {
+                                    user.prompt('hidden');
+                                    player.hidden = true;
+                                    console.log(Array.from(user.groups));
+                                }
+                            }
+                        });
                         break;
                 }
 
