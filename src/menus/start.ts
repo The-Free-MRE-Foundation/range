@@ -9,7 +9,7 @@ import { Window, WindowOptions } from "../window";
 const CATEGORIES = ['Pistols', 'Heavy', 'SMGs', 'Rifles', 'Gear', 'Grenades'];
 
 const CATEGORIES_MAP: { [name: string]: ItemType[] } = {
-    'Pistols': [ItemType.PISTOL],
+    'Pistols': [ItemType.PISTOL, ItemType.MAGIC],
     'Heavy': [ItemType.SHOTGUN, ItemType.HMG],
     'SMGs': [ItemType.SMG],
     'Rifles': [ItemType.RIFLE, ItemType.SNIPER],
